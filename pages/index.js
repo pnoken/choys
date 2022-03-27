@@ -4,7 +4,7 @@ import CardLineChart from "../components/Cards/CardLineChart.js";
 // import CardPageVisits from "components/Cards/CardPageVisits.js";
 // import CardSocialTraffic from "components/Cards/CardSocialTraffic.js";
 
-import Admin from "layouts/Admin.js";
+import Admin from "../layouts/Admin.js";
 
 export default function Dashboard() {
   return (
