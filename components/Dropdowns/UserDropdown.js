@@ -1,7 +1,13 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
+import { async } from "@firebase/util";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase-config";
 
 const UserDropdown = ({ user }) => {
+  const logout = async () => {
+    await signOut(auth);
+  };
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
@@ -77,9 +83,9 @@ const UserDropdown = ({ user }) => {
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
-          onClick={(e) => e.preventDefault()}
+          onClick={logout}
         >
-          Seprated link
+          Signout
         </a>
       </div>
     </>

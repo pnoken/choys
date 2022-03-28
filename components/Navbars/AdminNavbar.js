@@ -53,7 +53,7 @@ export default function Navbar() {
 
           {/* User */}
           <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
-            <UserDropdown user={user.email} />
+            <UserDropdown user={user?.email} />
           </ul>
         </div>
       </nav>

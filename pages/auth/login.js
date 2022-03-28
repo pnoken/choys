@@ -1,9 +1,21 @@
 import React from "react";
 import Link from "next/link";
 import Auth from "../../layouts/Auth.js";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase-config.js";
 
 export default function Login() {
-  const register = async () => {};
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const login = () => {
+    try {
+      const user = await signInWithEmailAndPassword(auth, email, password)
+      console.log(user)
+    } catch (err) {
+      console.log(err.message)
+    }
+    
+  };
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -32,6 +44,7 @@ export default function Login() {
                       type="email"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Email"
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
 
@@ -46,6 +59,7 @@ export default function Login() {
                       type="password"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
                   <div>
@@ -65,6 +79,7 @@ export default function Login() {
                     <button
                       className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
+                      onClick={login}
                     >
                       Sign In
                     </button>
