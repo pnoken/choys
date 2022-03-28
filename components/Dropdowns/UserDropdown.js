@@ -1,7 +1,7 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
 
-const UserDropdown = () => {
+const UserDropdown = ({ user }) => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
@@ -33,6 +33,7 @@ const UserDropdown = () => {
               className="w-full rounded-full align-middle border-none shadow-lg"
               src="/user/team-1-800x800.jpg"
             />
+            <span>{user}</span>
           </span>
         </div>
       </a>

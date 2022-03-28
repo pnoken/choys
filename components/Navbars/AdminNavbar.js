@@ -1,7 +1,14 @@
 import React from "react";
 import UserDropdown from "../Dropdowns/UserDropdown.js";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase-config";
 
 export default function Navbar() {
+  const [user, setUser] = React.useState("");
+
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+  });
   return (
     <>
       {/* Navbar */}
@@ -46,7 +53,7 @@ export default function Navbar() {
 
           {/* User */}
           <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
-            <UserDropdown />
+            <UserDropdown user={user.email} />
           </ul>
         </div>
       </nav>
