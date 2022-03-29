@@ -7,7 +7,7 @@ export default function Admin({ children }) {
   return (
     <>
       <Sidebar />
-      <div className="relative md:ml-24 bg-slate-300">
+      <div className="relative md:ml-24 bg-[#EFF3F9]">
         <AdminNavbar />
         {/* Header */}
         <HeaderStats />

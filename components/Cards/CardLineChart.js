@@ -108,14 +108,14 @@ export default function CardLineChart() {
   }, []);
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-[#EBEBEB]">
+      <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
         <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               {/* <h6 className="text-blueGray-100 mb-1 text-xs font-semibold">
                 Wellbeing Engagement
               </h6> */}
-              <h2 className="text-white text-xl font-semibold">
+              <h2 className="text-black text-xl font-semibold">
                 Wellbeing Engagement
               </h2>
             </div>
