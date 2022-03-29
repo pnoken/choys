@@ -1,6 +1,6 @@
 import { auth } from "../firebase-config";
 import { useState } from "react";
-import Login from "../pages/auth/login";
+import Login from "../components/Layout/Auth";
 import { onAuthStateChanged } from "firebase/auth";
 
 const withAuth = (Component) => {
@@ -12,7 +12,7 @@ const withAuth = (Component) => {
     });
     // If user is not logged in, return login component
     if (!user) {
-      return <Login />;
+      return <Auth />;
     }
 
     // If user is logged in, return original component
