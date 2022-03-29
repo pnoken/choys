@@ -2,51 +2,45 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export default function CardStats({
-  statSubtitle,
+  statTitlePercent,
   statTitle,
   statArrow,
   statPercent,
-  statPercentColor,
-  statDescription,
-  statIconName,
-  statIconColor,
+  bgColor,
 }) {
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-[#161395] rounded mb-6 xl:mb-0 shadow-lg">
+      <div
+        className={
+          "relative flex flex-col min-w-0 break-words rounded mb-6 xl:mb-0 shadow-lg " +
+          bgColor
+        }
+      >
         <div className="flex-auto p-4">
           <div className="flex flex-wrap">
             <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-              <h5 className="text-white font-bold text-xs">{statSubtitle}</h5>
-              <span className="font-semibold text-xl text-white">
-                {statTitle}
+              <h5 className="text-white font-bold text-xs">{statTitle}</h5>
+              <span className="font-semibold text-white">
+                {statTitlePercent}
               </span>
             </div>
             <div className="relative w-auto pl-4 flex-initial">
-              <div
-                className={
-                  "text-white p-3 text-center inline-flex items-center justify-center w-12 h-12" +
-                  statIconColor
-                }
-              >
-                <i className={statIconName}></i>
-              </div>
+              <p className="text-sm text-white mt-4">
+                <span className="mr-2">
+                  {statPercent}%
+                  <i
+                    className={
+                      statArrow === "up"
+                        ? "fas fa-arrow-up"
+                        : statArrow === "down"
+                        ? "fas fa-arrow-down"
+                        : ""
+                    }
+                  ></i>{" "}
+                </span>
+              </p>
             </div>
           </div>
-          <p className="text-sm text-white mt-4">
-            <span className={statPercentColor + " mr-2"}>
-              <i
-                className={
-                  statArrow === "up"
-                    ? "fas fa-arrow-up"
-                    : statArrow === "down"
-                    ? "fas fa-arrow-down"
-                    : ""
-                }
-              ></i>{" "}
-              {statPercent}%
-            </span>
-          </p>
         </div>
       </div>
     </>

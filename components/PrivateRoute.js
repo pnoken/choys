@@ -1,19 +1,21 @@
 import { auth } from "../firebase-config";
-import { useState } from "react";
-import Login from "../components/Layout/Auth";
+import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+import { useRouter } from "next/router";
 
 const withAuth = (Component) => {
   const Auth = (props) => {
     const [user, setUser] = useState("");
-
+    const router = useRouter();
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
     // If user is not logged in, return login component
-    if (!user) {
-      return <Auth />;
-    }
+    useEffect(() => {
+      if (!user) {
+        router.push("/auth/login");
+      }
+    }, []);
 
     // If user is logged in, return original component
     return <Component {...props} />;

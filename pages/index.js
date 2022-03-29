@@ -12,24 +12,24 @@ export default function Dashboard() {
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="w-full xl:w-6/12 mb-12 xl:mb-0 px-4">
+        <div className="w-full xl:w-6/12 mb-12 xl:mb-0 px-1">
           <CardLineChart />
         </div>
-        <div className="w-full xl:w-3/12 px-4">
+        <div className="w-full xl:w-3/12 px-1">
           <CardActivationRate />
         </div>
-        <div className="w-full xl:w-3/12 px-4">
+        <div className="w-full xl:w-3/12 px-1">
           <CardKeyWords />
         </div>
       </div>
       <div className="flex flex-wrap mt-4">
-        <div className="w-full xl:w-5/12 mb-12 xl:mb-0 px-4">
+        <div className="w-full xl:w-6/12 mb-12 xl:mb-0 px-1">
           <CardTopWellbeingActivities />
         </div>
-        <div className="w-full xl:w-4/12 px-4">
+        <div className="w-full xl:w-4/12 px-1">
           <WellbeingChampionBoard />
         </div>
-        <div className="w-full xl:w-3/12 px-4">
+        <div className="w-full xl:w-2/12 px-1">
           <NewJoinerVideo />
         </div>
       </div>
