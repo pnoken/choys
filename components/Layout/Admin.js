@@ -1,13 +1,13 @@
 import React from "react";
-import AdminNavbar from "../components/Navbars/AdminNavbar.js";
-import Sidebar from "../components/Sidebar/Sidebar.js";
-import HeaderStats from "../components/Headers/HeaderStats.js";
+import AdminNavbar from "../Navbars/AdminNavbar.js";
+import Sidebar from "../Sidebar/Sidebar.js";
+import HeaderStats from "../Headers/HeaderStats.js";
 
 export default function Admin({ children }) {
   return (
     <>
       <Sidebar />
-      <div className="relative md:ml-90 bg-yellow-300">
+      <div className="relative md:ml-24 bg-slate-300">
         <AdminNavbar />
         {/* Header */}
         <HeaderStats />

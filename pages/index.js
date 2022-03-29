@@ -6,7 +6,7 @@ import CardTopWellbeingActivities from "../components/Cards/CardTopWellbeingActi
 import NewJoinerVideo from "../components/Cards/NewJoinerVideo.js";
 import WellbeingChampionBoard from "../components/Cards/WellBeingChampionBoard.js";
 import withAuth from "../components/PrivateRoute.js";
-import Admin from "../layouts/Admin";
+import Admin from "../components/Layout/Admin";
 
 export default function Dashboard() {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import CardAPI from "../components/Cards/CardAPI";
-
-import Admin from "../layouts/Admin";
+import withAuth from "../components/PrivateRoute";
+import Admin from "../components/Layout/Admin";
 
 export default function Settings() {
   return (
@@ -16,4 +16,4 @@ export default function Settings() {
   );
 }
 
-Settings.layout = Admin;
+Settings.layout = withAuth(Admin);

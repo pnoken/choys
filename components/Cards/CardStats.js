@@ -7,7 +7,7 @@ export default function CardStats({
   statArrow,
   statPercent,
   statPercentColor,
-  statDescripiron,
+  statDescription,
   statIconName,
   statIconColor,
 }) {
