@@ -8,8 +8,10 @@ import { useRouter } from "next/router";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const login = async () => {
+    setLoading(true);
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
       if (user) {
@@ -18,6 +20,7 @@ export default function Login() {
     } catch (err) {
       console.log(err.message);
     }
+    setLoading(false);
   };
   return (
     <>
@@ -26,7 +29,7 @@ export default function Login() {
           <div className="w-full lg:w-4/12 px-4">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0">
               <div className="rounded-t mb-0 px-6 py-6">
-                <div className="text-center mb-6">
+                <div className="mb-6">
                   <h6 className="text-blueGray-500 text-sm font-bold">
                     Sign in
                   </h6>
@@ -36,7 +39,7 @@ export default function Login() {
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                 <form>
-                  <div className="relative w-full mb-3">
+                  <div className="relative w-full mb-3 border-b border-black py-2">
                     <label
                       className="block text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
@@ -45,13 +48,13 @@ export default function Login() {
                     </label>
                     <input
                       type="email"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                       placeholder="Email"
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
 
-                  <div className="relative w-full mb-3">
+                  <div className="relative w-full mb-3 border-b border-black py-2">
                     <label
                       className="block text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
@@ -60,7 +63,7 @@ export default function Login() {
                     </label>
                     <input
                       type="password"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                       placeholder="Password"
                       onChange={(e) => setPassword(e.target.value)}
                     />
@@ -79,13 +82,24 @@ export default function Login() {
                   </div>
 
                   <div className="text-center mt-6">
-                    <button
-                      className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                      type="button"
-                      onClick={login}
-                    >
-                      Sign In
-                    </button>
+                    {loading ? (
+                      <button
+                        type="button"
+                        class="bg-blue-300 text-white active:bg-blue-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                        disabled
+                      >
+                        Logging In...
+                      </button>
+                    ) : (
+                      <button
+                        className="bg-blue-300 text-white active:bg-blue-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                        type="button"
+                        onClick={login}
+                        disabled={!email || !password}
+                      >
+                        Sign In
+                      </button>
+                    )}
                   </div>
                 </form>
               </div>
@@ -93,7 +107,7 @@ export default function Login() {
             <div className="flex flex-wrap mt-6 relative">
               <div className="w-1/2">
                 <a
-                  href="#pablo"
+                  href="#forgot-password"
                   onClick={(e) => e.preventDefault()}
                   className="text-blueGray-200"
                 >
