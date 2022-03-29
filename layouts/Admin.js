@@ -2,13 +2,12 @@ import React from "react";
 import AdminNavbar from "../components/Navbars/AdminNavbar.js";
 import Sidebar from "../components/Sidebar/Sidebar.js";
 import HeaderStats from "../components/Headers/HeaderStats.js";
-// import FooterAdmin from "components/Footers/FooterAdmin.js";
 
 export default function Admin({ children }) {
   return (
     <>
       <Sidebar />
-      <div className="relative md:ml-64 bg-[#EFF3F9]">
+      <div className="relative md:ml-70 bg-slate-300">
         <AdminNavbar />
         {/* Header */}
         <HeaderStats />

@@ -13,7 +13,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Productivity"
-                  statTitle="350,897"
+                  statTitle="35%"
                   statArrow="up"
                   statPercent="3.48"
                   statPercentColor="text-emerald-500"
@@ -25,7 +25,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Engagement"
-                  statTitle="2,356"
+                  statTitle="24%"
                   statArrow="down"
                   statPercent="3.48"
                   statPercentColor="text-red-500"
@@ -37,19 +37,18 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Retention"
-                  statTitle="924"
+                  statTitle="92%"
                   statArrow="down"
                   statPercent="1.10"
                   statPercentColor="text-orange-500"
                   statDescripiron="Since yesterday"
                   statIconName="fas fa-users"
-                  statIconColor=""
                 />
               </div>
               <div className="w-full lg:w-8/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Share your care reminder"
-                  statTitle="49,65%"
+                  statTitle="65%"
                   statArrow="up"
                   statPercent="12"
                   statPercentColor="text-emerald-500"

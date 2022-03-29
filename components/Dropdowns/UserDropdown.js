@@ -1,6 +1,5 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
-import { async } from "@firebase/util";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";
 
@@ -34,11 +33,11 @@ const UserDropdown = ({ user }) => {
       >
         <div className="items-center flex">
           <span className="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
-            <img
+            {/* <img
               alt="..."
               className="w-full rounded-full align-middle border-none shadow-lg"
               src="/user/team-1-800x800.jpg"
-            />
+            /> */}
             <span>{user}</span>
           </span>
         </div>
@@ -79,7 +78,7 @@ const UserDropdown = ({ user }) => {
         </a>
         <div className="h-0 my-2 border border-solid border-blueGray-100" />
         <a
-          href="#pablo"
+          href="/auth/login"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }

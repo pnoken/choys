@@ -1,8 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
-// import NotificationDropdown from "../Dropdowns/NotificationDropdown.js";
 import UserDropdown from "../Dropdowns/UserDropdown.js";
 
 export default function Sidebar() {
@@ -10,7 +8,7 @@ export default function Sidebar() {
   const router = useRouter();
   return (
     <>
-      <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0  md:flex-row md:flex-nowrap shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-32 z-10 py-4 px-6">
+      <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0  md:flex-row md:flex-nowrap shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-24 z-10 py-4 px-6">
         <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
           {/* Toggler */}
           <button
@@ -23,7 +21,7 @@ export default function Sidebar() {
           {/* Brand */}
           <Link href="/">
             <a
-              href="#pablo"
+              href="#choys"
               className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             >
               <img src="brand/choys.svg" alt="choys logo" />
@@ -54,7 +52,7 @@ export default function Sidebar() {
                       href="#pablo"
                       className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     >
-                      CHOYS
+                      <img src="brand/choys.svg" alt="choys logo" />
                     </a>
                   </Link>
                 </div>
@@ -72,12 +70,12 @@ export default function Sidebar() {
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none p-4">
               <li className="items-center">
-                <Link href="/admin/dashboard">
+                <Link href="/">
                   <a
                     href="#home"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/admin/dashboard") !== -1
+                      (router.pathname.indexOf("/") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
@@ -88,12 +86,12 @@ export default function Sidebar() {
               </li>
 
               <li className="items-center">
-                <Link href="/admin/settings">
+                <Link href="/calendar">
                   <a
-                    href="#pablo"
+                    href="#calendar"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/admin/settings") !== -1
+                      (router.pathname.indexOf("/calendar") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
@@ -104,57 +102,57 @@ export default function Sidebar() {
               </li>
 
               <li className="items-center">
-                <Link href="/admin/settings">
+                <Link href="/users">
                   <a
-                    href="#pablo"
+                    href="#users"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/admin/settings") !== -1
+                      (router.pathname.indexOf("/users") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
-                    <img src="sidebar-icons/users.svg" alt="home" />
+                    <img src="sidebar-icons/users.svg" alt="users" />
                   </a>
                 </Link>
               </li>
               <li className="items-center">
-                <Link href="/admin/settings">
+                <Link href="/messages">
                   <a
-                    href="#pablo"
+                    href="#messages"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/admin/settings") !== -1
+                      (router.pathname.indexOf("/messages") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
-                    <img src="sidebar-icons/message.svg" alt="home" />
+                    <img src="sidebar-icons/message.svg" alt="messages" />
                   </a>
                 </Link>
               </li>
               <li className="items-center">
-                <Link href="/admin/settings">
+                <Link href="/play">
                   <a
-                    href="#pablo"
+                    href="#play"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/admin/settings") !== -1
+                      (router.pathname.indexOf("/play") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
-                    <img src="sidebar-icons/play.svg" alt="home" />
+                    <img src="sidebar-icons/play.svg" alt="play activity" />
                   </a>
                 </Link>
               </li>
               <li className="items-center">
-                <Link href="/admin/settings">
+                <Link href="/stats">
                   <a
-                    href="#pablo"
+                    href="#stats"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/admin/settings") !== -1
+                      (router.pathname.indexOf("/stats") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
@@ -164,17 +162,17 @@ export default function Sidebar() {
                 </Link>
               </li>
               <li className="items-center">
-                <Link href="/admin/settings">
+                <Link href="/settings">
                   <a
-                    href="#pablo"
+                    href="#settings"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/admin/settings") !== -1
+                      (router.pathname.indexOf("/settings") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
-                    <img src="sidebar-icons/settings.svg" alt="home" />
+                    <img src="sidebar-icons/settings.svg" alt="settings" />
                   </a>
                 </Link>
               </li>

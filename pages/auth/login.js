@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Auth from "../../layouts/Auth.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase-config.js";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const login = () => {
+  const router = useRouter();
+  const login = async () => {
     try {
-      const user = await signInWithEmailAndPassword(auth, email, password)
-      console.log(user)
+      const user = await signInWithEmailAndPassword(auth, email, password);
+      if (user) {
+        router.push("/");
+      }
     } catch (err) {
-      console.log(err.message)
+      console.log(err.message);
     }
-    
   };
   return (
     <>
@@ -98,7 +101,7 @@ export default function Login() {
                 </a>
               </div>
               <div className="w-1/2 text-right">
-                <Link href="/auth/register">
+                <Link href="/auth/signup">
                   <a href="#pablo" className="text-blueGray-200">
                     <small>Create new account</small>
                   </a>

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default function CardStats({
+export default function CardAPI({
   statSubtitle,
   statTitle,
   statArrow,
@@ -13,12 +13,14 @@ export default function CardStats({
 }) {
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-[#161395] rounded mb-6 xl:mb-0 shadow-lg">
+      <div className="relative flex flex-col min-w-0 break-words bg-purple-700 rounded mb-6 xl:mb-0 shadow-lg">
         <div className="flex-auto p-4">
           <div className="flex flex-wrap">
             <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-              <h5 className="text-white font-bold text-xs">{statSubtitle}</h5>
-              <span className="font-semibold text-xl text-white">
+              <h5 className="text-blueGray-400 font-bold text-xs">
+                {statSubtitle}
+              </h5>
+              <span className="font-semibold text-xl text-blueGray-700">
                 {statTitle}
               </span>
             </div>
@@ -33,7 +35,7 @@ export default function CardStats({
               </div>
             </div>
           </div>
-          <p className="text-sm text-white mt-4">
+          <p className="text-sm text-blueGray-400 mt-4">
             <span className={statPercentColor + " mr-2"}>
               <i
                 className={
@@ -46,6 +48,7 @@ export default function CardStats({
               ></i>{" "}
               {statPercent}%
             </span>
+            <span className="whitespace-nowrap">{statDescripiron}</span>
           </p>
         </div>
       </div>
@@ -53,7 +56,7 @@ export default function CardStats({
   );
 }
 
-CardStats.defaultProps = {
+CardAPI.defaultProps = {
   statSubtitle: "Traffic",
   statTitle: "350,897",
   statArrow: "up",
@@ -64,7 +67,7 @@ CardStats.defaultProps = {
   statIconColor: "bg-red-500",
 };
 
-CardStats.propTypes = {
+CardAPI.propTypes = {
   statSubtitle: PropTypes.string,
   statTitle: PropTypes.string,
   statArrow: PropTypes.oneOf(["up", "down"]),

@@ -2,36 +2,16 @@ import React from "react";
 import App from "next/app";
 import Head from "next/head";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import "../styles/tailwind.css";
+import "../styles/globals.css";
 
-export default class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {};
+function MyApp({ Component, pageProps }) {
+  const Layout = Component.layout || (({ children }) => <>{children}</>);
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
-
-    return { pageProps };
-  }
-  render() {
-    const { Component, pageProps } = this.props;
-
-    const Layout = Component.layout || (({ children }) => <>{children}</>);
-
-    return (
-      <React.Fragment>
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
-          <title>CHOYS</title>
-        </Head>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </React.Fragment>
-    );
-  }
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
 }
+
+export default MyApp;
