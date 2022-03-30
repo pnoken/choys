@@ -4,26 +4,34 @@ import Auth from "../../components/Layout/Auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase-config.js";
 import { useRouter } from "next/router";
+import { Notification } from "../../components/Toast/notification";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState("");
+  const [status, setStatus] = useState("");
   const router = useRouter();
   const login = async () => {
     setLoading(true);
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
       if (user) {
-        router.push("/");
+        setStatus("success");
+        setResponse(`Successfully logged in as ${user.user.email}`);
+        setTimeout(() => router.push("/"), 3000);
       }
     } catch (err) {
       console.log(err.message);
+      setStatus("danger");
+      setResponse(err.message);
     }
     setLoading(false);
   };
   return (
     <>
+      {response && <Notification message={response} status={status} />}
       <div className="container mx-auto px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-4/12 px-4">
