@@ -1,7 +1,8 @@
 import { auth } from "../firebase-config";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/router";
+import Preloader from "./preloader";
 
 const withAuth = (Component) => {
   const Auth = (props) => {
@@ -11,11 +12,15 @@ const withAuth = (Component) => {
       setUser(currentUser);
     });
     // If user is not logged in, return login component
-    useEffect(() => {
-      if (!user) {
-        router.push("/auth/login");
-      }
-    }, []);
+    // useEffect(() => {
+
+    if (typeof window !== "undefined" && user === null)
+      router.push("/auth/login");
+
+    if (!user) {
+      return <Preloader />;
+    }
+    // });
 
     // If user is logged in, return original component
     return <Component {...props} />;

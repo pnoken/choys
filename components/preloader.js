@@ -1,6 +1,6 @@
 const Preloader = () => {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex py-24 items-center justify-center">
       <div
         className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
         role="status"
@@ -12,3 +12,5 @@ const Preloader = () => {
     </div>
   );
 };
+
+export default Preloader;
