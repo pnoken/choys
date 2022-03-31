@@ -13,7 +13,8 @@ export default function Login() {
   const [response, setResponse] = useState("");
   const [status, setStatus] = useState("");
   const router = useRouter();
-  const login = async () => {
+  const login = async (e) => {
+    e.preventDefault();
     setLoading(true);
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
@@ -24,7 +25,7 @@ export default function Login() {
       }
     } catch (err) {
       console.log(err.message);
-      setStatus("danger");
+      setStatus("error");
       setResponse(err.message);
     }
     setLoading(false);
@@ -46,7 +47,7 @@ export default function Login() {
                 {/* <hr className="mt-6 border-b-1 border-blueGray-300" /> */}
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form>
+                <form onSubmit={login}>
                   <div className="relative w-full mb-3 border-b border-black py-2">
                     <label
                       className="block text-blueGray-600 text-xs font-bold mb-2"
@@ -101,8 +102,8 @@ export default function Login() {
                     ) : (
                       <button
                         className="bg-blue-500 text-white active:bg-blue-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                        type="button"
-                        onClick={login}
+                        type="submit"
+                        disabled={!email || !password}
                       >
                         Sign In
                       </button>

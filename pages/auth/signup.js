@@ -3,23 +3,39 @@ import Auth from "../../components/Layout/Auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import { useRouter } from "next/router";
+import { Notification } from "../../components/Toast/notification";
+import Link from "next/link";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState("");
+  const [status, setStatus] = useState("");
   const router = useRouter();
-  const register = async () => {
+  const register = async (e) => {
+    e.preventDefault();
+    setLoading(true);
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
       if (user) {
+        if (user) {
+          console.log(user);
+          setStatus("success");
+          setResponse(`Successfully signed up as ${user.user.email}`);
+          setTimeout(() => router.push("/"), 3000);
+        }
         router.push("/");
       }
     } catch (err) {
-      console.log(err.message);
+      setStatus("error");
+      setResponse(err.message);
     }
+    setLoading(false);
   };
   return (
     <>
+      {response && <Notification message={response} status={status} />}
       <div className="container mx-auto px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-4/12 px-4">
@@ -32,7 +48,7 @@ export default function Register() {
                 </div>
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form>
+                <form onSubmit={register}>
                   <div className="relative w-full mb-3 border-b border-black py-2">
                     <label
                       className="block text-blueGray-600 text-xs font-bold mb-2"
@@ -84,16 +100,43 @@ export default function Register() {
                   </div>
 
                   <div className="text-center mt-6">
-                    <button
-                      className="bg-blue-500 text-white active:bg-blue-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                      type="button"
-                      onClick={register}
-                      disabled={!email || !password}
-                    >
-                      Create Account
-                    </button>
+                    {loading ? (
+                      <button
+                        type="button"
+                        className="bg-blue-300 text-white active:bg-blue-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                        disabled
+                      >
+                        Signing Up...
+                      </button>
+                    ) : (
+                      <button
+                        className="bg-blue-500 text-white active:bg-blue-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                        type="submit"
+                        disabled={!email || !password}
+                      >
+                        Create Account
+                      </button>
+                    )}
                   </div>
                 </form>
+              </div>
+            </div>
+            <div className="flex flex-wrap mt-6 relative">
+              <div className="w-1/2">
+                <a
+                  href="#forgot-password"
+                  onClick={(e) => e.preventDefault()}
+                  className="text-blueGray-200"
+                >
+                  <small>Already have an account?</small>
+                </a>
+              </div>
+              <div className="w-1/2 text-right">
+                <Link href="/auth/login">
+                  <a href="#pablo" className="text-blueGray-200">
+                    <small>Login</small>
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
