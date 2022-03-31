@@ -12,7 +12,7 @@ export default function CardAPI() {
       <ul className="my-4 space-y-3">
         <li>
           <a
-            href="#strava"
+            href="https://www.strava.com/oauth/authorize?client_id=80223&response_type=code&redirect_uri=http://choys.vercel.app/settings&approval_prompt=force"
             className="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
           >
             <img src="api_providers/strava.png" alt="strava" />
