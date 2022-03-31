@@ -2,6 +2,7 @@ import React from "react";
 import { createPopper } from "@popperjs/core";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";
+import { Link } from "next/link";
 
 const UserDropdown = ({ user }) => {
   const logout = async () => {
@@ -49,15 +50,16 @@ const UserDropdown = ({ user }) => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
-        <a
-          href="/settings"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Profile
-        </a>
+        <Link href="/settings">
+          <a
+            className={
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+            }
+            onClick={(e) => e.preventDefault()}
+          >
+            Profile
+          </a>
+        </Link>
         <a
           href="#support"
           className={
