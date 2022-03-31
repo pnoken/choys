@@ -2,7 +2,6 @@ import React from "react";
 import { createPopper } from "@popperjs/core";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";
-import Link from "next/link";
 
 const UserDropdown = ({ user }) => {
   const logout = async () => {
@@ -39,7 +38,7 @@ const UserDropdown = ({ user }) => {
               className="w-full rounded-full align-middle border-none shadow-lg"
               src="/user/team-1-800x800.jpg"
             /> */}
-            <span>{user}</span>
+            <span>{user?.substring(1, 0)}</span>
           </span>
         </div>
       </a>
