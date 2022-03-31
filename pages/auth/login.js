@@ -4,7 +4,7 @@ import Auth from "../../components/Layout/Auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase-config.js";
 import { useRouter } from "next/router";
-import { Notification } from "../../components/Toast/notification";
+import { Notification } from "../../components/Toast/Notification";
 
 export default function Login() {
   const [email, setEmail] = useState("");
