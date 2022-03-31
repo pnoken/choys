@@ -3,7 +3,7 @@ import Auth from "../../components/Layout/Auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import { useRouter } from "next/router";
-import { Notification } from "../../components/Toast/notification";
+import { Notification } from "../../components/Toast/Notification";
 import Link from "next/link";
 
 export default function Register() {
