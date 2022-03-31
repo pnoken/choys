@@ -14,7 +14,11 @@ export default function NewJoinerVideo() {
           </div>
         </div>
         <div className="p-4 flex-auto">
-          <div className="rounded-full bg-purple-700 p-14">rounded</div>
+          <img
+            className="rounded-full w-300 mx-2"
+            src="newjoiner.svg"
+            alt="pic"
+          />
         </div>
       </div>
     </>

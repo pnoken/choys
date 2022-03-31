@@ -16,11 +16,40 @@ export default function WellbeingChampionBoard() {
         </div>
         <div className="p-4 flex-auto">
           {/* Chart */}
-          <div className="relative flex h-350-px">
-            <div className="rounded-full w-200 bg-blue-700 p-6 mx-2">hey</div>
-            <div className="rounded-full w-200 bg-blue-700 p-6 mx-2">hey</div>
-            <div className="rounded-full w-200 bg-blue-700 p-6 mx-2">hey</div>
-            <div className="rounded-full w-200 bg-blue-700 p-6 mx-2">hey</div>
+          <div className="relative flex h-350-px text-white">
+            <div>
+              <img
+                className="rounded-full w-300 mx-2"
+                src="champion-board/user1.svg"
+                alt="pic"
+              />
+
+              <div className="text-center p-2">Alex</div>
+            </div>
+            <div>
+              <img
+                className="rounded-full w-300 mx-2"
+                src="champion-board/user1.svg"
+                alt="pic"
+              />
+              <div className="text-center p-2">Alex</div>
+            </div>
+            <div>
+              <img
+                className="rounded-full w-300 mx-2"
+                src="champion-board/user1.svg"
+                alt="pic"
+              />
+              <div className="text-center p-2">Alex</div>
+            </div>
+            <div>
+              <img
+                className="rounded-full w-300 mx-2"
+                src="champion-board/user1.svg"
+                alt="pic"
+              />
+              <div className="text-center p-2">Alex</div>
+            </div>
           </div>
         </div>
       </div>

@@ -17,7 +17,9 @@ export default function CardKeyWords() {
         <div className="p-4 flex-auto">
           {/* Chart */}
           <div className="relative h-350-px">
-            <canvas id="pie-chart"></canvas>
+            <div className="rounded-full w-200 bg-yellow-700 p-6 mx-2"></div>
+            <div className="rounded-full w-200 bg-blue-700 p-6 mx-2"></div>
+            <div className="rounded-full w-200 bg-red-700 p-6 mx-2"></div>
           </div>
         </div>
       </div>

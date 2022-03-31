@@ -76,8 +76,8 @@ export default function Sidebar() {
                     className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
+                        ? "fill-blue-500 hover:fill-blue-600"
+                        : "fill-blueGray-700 hover:fill-blueGray-500")
                     }
                   >
                     <img src="sidebar-icons/home.svg" alt="home" />

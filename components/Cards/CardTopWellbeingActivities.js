@@ -24,14 +24,14 @@ export default function CardTopWellbeingActivities() {
               <div class="col-span-2">
                 <div className="flex items-center">
                   <div className="relative w-full">
-                    <div className="overflow-hidden h-2 text-xs flex rounded bg-emerald-200">
+                    <div className="overflow-hidden h-2 text-xs flex rounded bg-[#F1F1F1]">
                       <div
-                        style={{ width: "70%" }}
-                        className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500"
+                        style={{ width: "84%" }}
+                        className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-[#554CE1]"
                       ></div>
                     </div>
                   </div>
-                  <span className="mr-2">70%</span>
+                  <span className="mx-4">84%</span>
                 </div>
               </div>
               <div class="col-span-2">Drink Water</div>
@@ -47,17 +47,17 @@ export default function CardTopWellbeingActivities() {
                   <div className="relative w-full">
                     <div className="overflow-hidden h-2 text-xs flex rounded bg-emerald-200">
                       <div
-                        style={{ width: "70%" }}
+                        style={{ width: "72%" }}
                         className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500"
                       ></div>
                     </div>
                   </div>
-                  <span className="mr-2">70%</span>
+                  <span className="mx-4">72%</span>
                 </div>
               </div>
               <div class="col-span-2">Drink Water</div>
             </div>
-            <div class="grid grid-rows-3 grid-flow-col gap-4">
+            <div class="grid grid-rows-3 grid-flow-col gap-2">
               <div class="row-span-4 p-3">
                 <div className="bg-purple-400 p-3 w-12">
                   <img src="wellbeing-activities/drinkwater.svg" />
@@ -68,12 +68,12 @@ export default function CardTopWellbeingActivities() {
                   <div className="relative w-full">
                     <div className="overflow-hidden h-2 text-xs flex rounded bg-emerald-200">
                       <div
-                        style={{ width: "70%" }}
+                        style={{ width: "66%" }}
                         className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500"
                       ></div>
                     </div>
                   </div>
-                  <span className="mr-2">70%</span>
+                  <span className="mx-4">66%</span>
                 </div>
               </div>
               <div class="col-span-2">Drink Water</div>
