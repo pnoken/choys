@@ -75,6 +75,8 @@ export default function Register() {
                       type="password"
                       className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                       placeholder="Password"
+                      required
+                      minLength="6"
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
