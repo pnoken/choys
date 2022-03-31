@@ -14,71 +14,71 @@ export default function CardTopWellbeingActivities() {
         </div>
         <div className="block w-full overflow-x-auto">
           {/* Projects table */}
-          <table className="items-center w-full bg-transparent border-collapse">
-            <thead className="thead-light"></thead>
-            <tbody>
-              <tr>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <div className="flex items-center">
-                    <div className="relative w-full">
-                      <div className="overflow-hidden h-2 text-xs flex rounded bg-emerald-200">
-                        <div
-                          style={{ width: "70%" }}
-                          className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500"
-                        ></div>
-                      </div>
+          <div className="items-center w-full bg-transparent border-collapse">
+            <div class="grid grid-rows-3 grid-flow-col gap-4">
+              <div class="row-span-4 p-3">
+                <div className="bg-purple-400 p-3 w-12">
+                  <img src="wellbeing-activities/drinkwater.svg" />
+                </div>
+              </div>
+              <div class="col-span-2">
+                <div className="flex items-center">
+                  <div className="relative w-full">
+                    <div className="overflow-hidden h-2 text-xs flex rounded bg-emerald-200">
+                      <div
+                        style={{ width: "70%" }}
+                        className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500"
+                      ></div>
                     </div>
-                    <span className="mr-2">70%</span>
                   </div>
-                </td>
-              </tr>
-              <tr>
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                  Drink Water
-                </th>
-              </tr>
-              <tr>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <div className="flex items-center">
-                    <div className="relative w-full">
-                      <div className="overflow-hidden h-2 text-xs flex rounded bg-purple-200">
-                        <div
-                          style={{ width: "80%" }}
-                          className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500"
-                        ></div>
-                      </div>
+                  <span className="mr-2">70%</span>
+                </div>
+              </div>
+              <div class="col-span-2">Drink Water</div>
+            </div>
+            <div class="grid grid-rows-3 grid-flow-col gap-4">
+              <div class="row-span-4 p-3">
+                <div className="bg-yellow-400 p-3 w-12">
+                  <img src="wellbeing-activities/saving.svg" />
+                </div>
+              </div>
+              <div class="col-span-2">
+                <div className="flex items-center">
+                  <div className="relative w-full">
+                    <div className="overflow-hidden h-2 text-xs flex rounded bg-emerald-200">
+                      <div
+                        style={{ width: "70%" }}
+                        className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500"
+                      ></div>
                     </div>
-                    <span className="mr-2">80%</span>
                   </div>
-                </td>
-              </tr>
-              <tr>
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                  Saving
-                </th>
-              </tr>
-              <tr>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <div className="flex items-center">
-                    <div className="relative w-full">
-                      <div className="overflow-hidden h-2 text-xs flex rounded bg-lightBlue-200">
-                        <div
-                          style={{ width: "75%" }}
-                          className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-lightBlue-500"
-                        ></div>
-                      </div>
+                  <span className="mr-2">70%</span>
+                </div>
+              </div>
+              <div class="col-span-2">Drink Water</div>
+            </div>
+            <div class="grid grid-rows-3 grid-flow-col gap-4">
+              <div class="row-span-4 p-3">
+                <div className="bg-purple-400 p-3 w-12">
+                  <img src="wellbeing-activities/drinkwater.svg" />
+                </div>
+              </div>
+              <div class="col-span-2">
+                <div className="flex items-center">
+                  <div className="relative w-full">
+                    <div className="overflow-hidden h-2 text-xs flex rounded bg-emerald-200">
+                      <div
+                        style={{ width: "70%" }}
+                        className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500"
+                      ></div>
                     </div>
-                    <span className="mr-2">75%</span>
                   </div>
-                </td>
-              </tr>
-              <tr>
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                  Meditate
-                </th>
-              </tr>
-            </tbody>
-          </table>
+                  <span className="mr-2">70%</span>
+                </div>
+              </div>
+              <div class="col-span-2">Drink Water</div>
+            </div>
+          </div>
         </div>
       </div>
     </>
