@@ -2,7 +2,7 @@ import React from "react";
 import { createPopper } from "@popperjs/core";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";
-import { Link } from "next/link";
+import Link from "next/link";
 
 const UserDropdown = ({ user }) => {
   const logout = async () => {
