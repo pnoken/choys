@@ -2,18 +2,21 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 const axiosInt = axios.create({
-  baseURL: "https://www.strava.com/api/",
+  baseURL: "https://www.strava.com/api",
   timeout: 10000,
 });
 
+// const access = localStorage.getItem("access_token")
+
 const reqHandler = (req) => {
-  req.headers.Authorization = `Bearer ${localStorage.access_token}`;
+  req.headers.Authorization = `Bearer ${localStorage?.access}`;
   return req;
 };
 
-const resHandler = (res) => {
+const resHandler = async (res) => {
   const router = useRouter();
   if (res.status === 401) {
+    // const access = await refreshToken();
     router.push("/auth/login");
   }
 
