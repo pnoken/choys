@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CardAPI() {
+export default function CardAPI({ redirectURI, authenticated }) {
   return (
     <div className="p-4 max-w-sm bg-white rounded-lg border shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
       <h5 className="mb-3 text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
@@ -10,18 +10,36 @@ export default function CardAPI() {
         Connect with one of your accounts
       </p>
       <ul className="my-4 space-y-3">
-        <li>
-          <a
-            href="https://www.strava.com/oauth/authorize?client_id=80223&response_type=code&redirect_uri=http://choys.vercel.app/settings&approval_prompt=force"
-            className="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
-          >
-            <img src="api_providers/strava.png" alt="strava" />
-            <span className="flex-1 ml-3 whitespace-nowrap">Strava</span>
-            <span className="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
-              Popular
+        {authenticated ? (
+          <li>
+            <a
+              href="#revoke-access"
+              className="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+            >
+              <img src="api_providers/strava.png" alt="strava" />
+              <span className="flex-1 ml-3 whitespace-nowrap">Strava</span>
+              <span className="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-green-200 rounded dark:bg-gray-700 dark:text-gray-400">
+                Authenticated
+              </span>
+            </a>
+            <span className="inline-flex items-center text-xs font-normal text-gray-500 hover:underline dark:text-gray-400">
+              Click to revoke access
             </span>
-          </a>
-        </li>
+          </li>
+        ) : (
+          <li>
+            <a
+              href={`https://www.strava.com/oauth/authorize?client_id=80223&response_type=code&redirect_uri=${redirectURI}&approval_prompt=force`}
+              className="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+            >
+              <img src="api_providers/strava.png" alt="strava" />
+              <span className="flex-1 ml-3 whitespace-nowrap">Strava</span>
+              <span className="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
+                Popular
+              </span>
+            </a>
+          </li>
+        )}
         <li>
           <a
             href="#gfit"
