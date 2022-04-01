@@ -38,6 +38,9 @@ export default function CardAPI({ redirectURI, authenticated }) {
                 Popular
               </span>
             </a>
+            <span className="inline-flex items-center text-xs font-normal text-gray-500 hover:underline dark:text-gray-400">
+              Click to authenticate
+            </span>
           </li>
         )}
         <li>
@@ -47,6 +50,9 @@ export default function CardAPI({ redirectURI, authenticated }) {
           >
             <img src="api_providers/google-fit.png" alt="google fit" />
             <span className="flex-1 ml-3 whitespace-nowrap">Google Fit</span>
+            <span className="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
+              Coming Soon
+            </span>
           </a>
         </li>
         <li>
@@ -56,6 +62,9 @@ export default function CardAPI({ redirectURI, authenticated }) {
           >
             <img src="api_providers/fitbit.png" alt="fitbit" />
             <span className="flex-1 ml-3 whitespace-nowrap">Fitbit</span>
+            <span className="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
+              Coming Soon
+            </span>
           </a>
         </li>
       </ul>

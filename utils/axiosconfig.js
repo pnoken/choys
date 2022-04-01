@@ -2,13 +2,12 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 const axiosInt = axios.create({
-  baseURL: "https://www.strava.com",
+  baseURL: "https://www.strava.com/api/",
   timeout: 10000,
-  headers: { client_id: "" },
 });
 
 const reqHandler = (req) => {
-  req.headers.Authorization = "Bearer ey";
+  req.headers.Authorization = `Bearer ${localStorage.access_token}`;
   return req;
 };
 
@@ -26,7 +25,7 @@ const errorHandler = (error) => {
 };
 
 axiosInt.interceptors.request.use(
-  (req) => resHandler(req),
+  (req) => reqHandler(req),
   (error) => errorHandler(error)
 );
 

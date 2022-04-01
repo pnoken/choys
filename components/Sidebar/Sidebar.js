@@ -147,9 +147,9 @@ export default function Sidebar() {
                 </Link>
               </li>
               <li className="items-center">
-                <Link href="/stats">
+                <Link href="/analytics">
                   <a
-                    href="#stats"
+                    href="#analytics"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/stats") !== -1
