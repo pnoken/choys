@@ -13,6 +13,8 @@ const reqHandler = (req) => {
   return req;
 };
 
+const refreshToken = () => {};
+
 const resHandler = async (res) => {
   const router = useRouter();
   if (res.status === 401) {
