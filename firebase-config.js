@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
 // import * as admin from "firebase-admin/app";
 
 // admin.initializeApp();
@@ -22,4 +23,15 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
 export const auth = getAuth(app);
+
+export function writeUserData(userId, name, email, company) {
+  const db = getDatabase();
+  const reference = ref(db, "/" + company + "users/" + userId);
+
+  set(reference, {
+    username: name,
+    email: email,
+  });
+}

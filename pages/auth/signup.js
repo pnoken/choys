@@ -39,13 +39,15 @@ export default function Register() {
       <div className="container mx-auto px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-4/12 px-4">
-            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
+            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0">
               <div className="rounded-t mb-0 px-6 py-6">
-                <div className="mb-3">
+                <div className="mb-6">
                   <h6 className="text-blueGray-500 text-sm font-bold">
-                    Sign up
+                    Sign in
                   </h6>
                 </div>
+
+                {/* <hr className="mt-6 border-b-1 border-blueGray-300" /> */}
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                 <form onSubmit={register}>
@@ -60,6 +62,7 @@ export default function Register() {
                       type="email"
                       className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                       placeholder="Email"
+                      required
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
@@ -80,7 +83,6 @@ export default function Register() {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
-
                   <div>
                     <label className="inline-flex items-center cursor-pointer">
                       <input
@@ -89,14 +91,7 @@ export default function Register() {
                         className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                       />
                       <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                        I agree with the{" "}
-                        <a
-                          href="#pablo"
-                          className="text-lightBlue-500"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          Privacy Policy
-                        </a>
+                        Remember me
                       </span>
                     </label>
                   </div>
@@ -116,7 +111,7 @@ export default function Register() {
                         type="submit"
                         disabled={!email || !password}
                       >
-                        Create Account
+                        Sign Up
                       </button>
                     )}
                   </div>
@@ -125,18 +120,12 @@ export default function Register() {
             </div>
             <div className="flex flex-wrap mt-6 relative">
               <div className="w-1/2">
-                <a
-                  href="#forgot-password"
-                  onClick={(e) => e.preventDefault()}
-                  className="text-blueGray-200"
-                >
-                  <small>Already have an account?</small>
-                </a>
+                <small>Already have an account?</small>
               </div>
               <div className="w-1/2 text-right">
                 <Link href="/auth/login">
-                  <a href="#pablo" className="text-blueGray-200">
-                    <small>Login</small>
+                  <a className="text-blueGray-200">
+                    <small>login</small>
                   </a>
                 </Link>
               </div>
