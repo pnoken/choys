@@ -9,7 +9,7 @@ const Nofification = ({ setOpenNotification }) => {
           <p className="text-2xl font-semibold leading-6 text-gray-800">
             Notifications
           </p>
-          <div className="cursor-pointer" onclick={setOpenNotification(false)}>
+          <div className="cursor-pointer" onClick={setOpenNotification(false)}>
             <svg
               width={24}
               height={24}
