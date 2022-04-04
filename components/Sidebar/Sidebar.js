@@ -74,13 +74,14 @@ export default function Sidebar() {
                   <a
                     href="#home"
                     className={
-                      "text-xs uppercase py-3 font-bold block " +
+                      "text-xs flex uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/") !== -1
-                        ? "fill-blue-500 hover:fill-blue-600"
-                        : "fill-blueGray-700 hover:fill-blueGray-500")
+                        ? "text-blue-500 hover:text-blue-600"
+                        : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
                     <img src="sidebar-icons/home.svg" alt="home" />
+                    <span className="md:hidden ml-2 text-lg">Home</span>
                   </a>
                 </Link>
               </li>
@@ -97,6 +98,9 @@ export default function Sidebar() {
                     }
                   >
                     <img src="sidebar-icons/calendar.svg" alt="calendar" />
+                    <span className="md:hidden ml-2 text-lg inline-block">
+                      Calendar
+                    </span>
                   </a>
                 </Link>
               </li>
@@ -128,6 +132,7 @@ export default function Sidebar() {
                     }
                   >
                     <img src="sidebar-icons/message.svg" alt="messages" />
+                    <span className="md:hidden ml-2 text-lg">Messages</span>
                   </a>
                 </Link>
               </li>
@@ -143,6 +148,7 @@ export default function Sidebar() {
                     }
                   >
                     <img src="sidebar-icons/play.svg" alt="play activity" />
+                    <span className="md:hidden ml-2 text-lg">Activity</span>
                   </a>
                 </Link>
               </li>
@@ -158,6 +164,7 @@ export default function Sidebar() {
                     }
                   >
                     <img src="sidebar-icons/stats.svg" alt="stats" />
+                    <span className="md:hidden ml-2 text-lg">Analytics</span>
                   </a>
                 </Link>
               </li>
@@ -173,6 +180,7 @@ export default function Sidebar() {
                     }
                   >
                     <img src="sidebar-icons/settings.svg" alt="settings" />
+                    <span className="md:hidden ml-2 text-lg">Settings</span>
                   </a>
                 </Link>
               </li>

@@ -48,7 +48,7 @@ export default function Navbar() {
             onClick={(e) => e.preventDefault()}
           >
             <i
-              class="fas fa-bell"
+              className="fas fa-bell"
               onClick={() => setOpenNotification(true)}
             ></i>
           </a>
