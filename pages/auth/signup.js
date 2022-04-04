@@ -48,7 +48,7 @@ export default function Register() {
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="mb-6">
                   <h6 className="text-blueGray-500 text-sm font-bold">
-                    Sign in
+                    Sign Up
                   </h6>
                 </div>
 
