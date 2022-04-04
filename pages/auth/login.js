@@ -117,13 +117,11 @@ export default function Login() {
             </div>
             <div className="flex flex-wrap mt-6 relative">
               <div className="w-1/2">
-                <a
-                  href="#forgot-password"
-                  onClick={(e) => e.preventDefault()}
-                  className="text-blueGray-200"
-                >
-                  <small>Forgot password?</small>
-                </a>
+                <Link href="/auth/forgot-password">
+                  <a className="text-blueGray-200">
+                    <small>Forgot password? Reset</small>
+                  </a>
+                </Link>
               </div>
               <div className="w-1/2 text-right">
                 <Link href="/auth/signup">
