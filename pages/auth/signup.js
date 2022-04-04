@@ -25,7 +25,9 @@ export default function Register() {
         if (user) {
           setStatus("success");
           sendEmailVerification(auth.currentUser);
-          setResponse(`Successfully signed up as ${user.user.email}`);
+          setResponse(
+            `Successfully signed up as ${user.user.email}. Check your inbox to confirm`
+          );
           setTimeout(() => router.push("/"), 3000);
         }
         router.push("/");
