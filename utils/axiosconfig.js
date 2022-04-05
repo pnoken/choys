@@ -1,42 +1,57 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 
-const axiosInt = axios.create({
-  baseURL: "https://www.strava.com/api",
+const refresh =
+  typeof window !== "undefined" ? localStorage.getItem("refresh") : null;
+const access =
+  typeof window !== "undefined" ? localStorage.getItem("access") : null;
+
+let headers = {};
+headers.Authorization = `Bearer ${access}`;
+
+const axiosInstance = axios.create({
+  baseURL: "https://www.strava.com/api/v3",
   timeout: 10000,
+  headers,
 });
 
-// const access = localStorage.getItem("access_token")
+createAxiosResponseInterceptor();
 
-const reqHandler = (req) => {
-  req.headers.Authorization = `Bearer ${localStorage?.access}`;
-  return req;
+const saveToken = (access, refresh) => {
+  localStorage.setItem("access", access);
+  localStorage.setItem("refresh", refresh);
 };
 
-const refreshToken = () => {};
+function createAxiosResponseInterceptor() {
+  const interceptor = axiosInstance.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+      //Reject promise if error
 
-const resHandler = async (res) => {
-  const router = useRouter();
-  if (res.status === 401) {
-    // const access = await refreshToken();
-    router.push("/auth/login");
-  }
+      if (error.response.status === 401) {
+        return axios
+          .post(
+            `https://www.strava.com/oauth/token?client_id=80223&client_secret=bf4429450ccce439035180d52b46801d0ef64147&refresh_token=${refresh}&grant_type=refresh_token`
+          )
+          .then((response) => {
+            const { access_token, refresh_token } = response.data;
+            saveToken(access_token, refresh_token);
+            error.response.config.headers["Authorization"] =
+              "Bearer" + access_token;
+            return axios(error.response.config);
+          })
+          .catch((error) => {
+            const router = useRouter();
+            // destroyToken();
+            router.push("/auth/login");
+            return Promise.reject(error);
+          })
+          .finally(createAxiosResponseInterceptor);
+      }
 
-  return res;
-};
+      axiosInstance.interceptors.response.eject(interceptor);
+    }
+  );
+}
 
-const errorHandler = (error) => {
-  return Promise.reject(error);
-};
-
-axiosInt.interceptors.request.use(
-  (req) => reqHandler(req),
-  (error) => errorHandler(error)
-);
-
-axiosInt.interceptors.response.use(
-  (res) => resHandler(res),
-  (error) => errorHandler(error)
-);
-
-export default axiosInt;
+export default axiosInstance;

@@ -8,7 +8,7 @@ export default function Auth({ children }) {
       <main>
         <section className="relative w-full h-full py-40 min-h-screen">
           <div
-            className="absolute top-0 w-full h-full bg-no-repeat bg-full"
+            className="z-0 absolute top-0 w-full h-full bg-no-repeat bg-full"
             style={{
               backgroundImage: "url('/auth/bg.svg')",
             }}

@@ -50,7 +50,7 @@ export default function CardSettings() {
                   </label>
                   <input
                     type="text"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-gray-200 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-gray-200 rounded text-sm shadow focus:outline-none w-full ease-linear transition-all duration-150"
                     readOnly
                     defaultValue="CHOYS"
                   />
@@ -67,7 +67,7 @@ export default function CardSettings() {
                   <input
                     type="email"
                     readOnly
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-gray-200 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-gray-200 rounded text-sm shadow focus:outline-none w-full ease-linear transition-all duration-150"
                     defaultValue={user?.email}
                   />
                 </div>

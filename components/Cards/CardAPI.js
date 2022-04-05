@@ -1,6 +1,13 @@
 import React from "react";
+import axiosInstance from "../../utils/axiosconfig";
 
 export default function CardAPI({ redirectURI, authenticated }) {
+  const revokeAccess = async () => {
+    axiosInstance.post("https://www.strava.com/oauth/deauthorize");
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+    localStorage.removeItem("authenticated");
+  };
   return (
     <div className="p-4 max-w-sm bg-white rounded-lg border shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
       <h5 className="mb-3 text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
@@ -14,6 +21,7 @@ export default function CardAPI({ redirectURI, authenticated }) {
           <li>
             <a
               href="#revoke-access"
+              onClick={revokeAccess}
               className="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
             >
               <img src="api_providers/strava.png" alt="strava" />

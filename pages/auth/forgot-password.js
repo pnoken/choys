@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import Auth from "../../components/Layout/Auth";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import { useRouter } from "next/router";
 import { Notification } from "../../components/Toast/Notification";
+import Auth from "../../components/Layout/Auth";
 
-export default function Login() {
+export default function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [cEmail, setCEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState("");
   const [status, setStatus] = useState("");
-  const router = useRouter();
-  const login = async (e) => {
+  const resetPw = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
@@ -33,99 +31,75 @@ export default function Login() {
   return (
     <>
       {response && <Notification message={response} status={status} />}
-      <div className="container mx-auto px-4 h-full">
-        <div className="flex content-center items-center justify-center h-full">
-          <div className="w-full lg:w-4/12 px-4">
-            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0">
-              <div className="rounded-t mb-0 px-6 py-6">
-                <div className="mb-6">
-                  <h6 className="text-blueGray-500 text-sm font-bold">
-                    Reset Password
-                  </h6>
-                </div>
 
-                {/* <hr className="mt-6 border-b-1 border-blueGray-300" /> */}
-              </div>
-              <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form onSubmit={login}>
-                  <div className="relative w-full mb-3 border-b border-black py-2">
-                    <label
-                      className="block text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                      placeholder="Email"
-                      required
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </div>
+      <div className="flex justify-center px-6 my-12">
+        <div className="w-full xl:w-3/4 lg:w-11/12 flex">
+          <div
+            className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg"
+            style={{ backgroundImage: "url('/brand/choys.svg')" }}
+          ></div>
 
-                  <div className="relative w-full mb-3 border-b border-black py-2">
-                    <label
-                      className="block text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      Confirm Email Address
-                    </label>
-                    <input
-                      type="email"
-                      className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                      placeholder="Email"
-                      required
-                      onChange={(e) => setCEmail(e.target.value)}
-                    />
-                  </div>
-                  <div>
-                    <label className="inline-flex items-center cursor-pointer">
-                      <input
-                        id="customCheckLogin"
-                        type="checkbox"
-                        className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                      />
-                      <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                        Remember me
-                      </span>
-                    </label>
-                  </div>
-
-                  <div className="text-center mt-6">
-                    {loading ? (
-                      <button
-                        type="button"
-                        className="bg-blue-300 text-white active:bg-blue-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                        disabled
-                      >
-                        Sending Reset Link
-                      </button>
-                    ) : (
-                      <button
-                        className="bg-blue-500 text-white active:bg-blue-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                        type="submit"
-                        disabled={!email || !cEmail}
-                      >
-                        Send Reset Link
-                      </button>
-                    )}
-                  </div>
-                </form>
-              </div>
+          <div className="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
+            <div className="px-8 mb-4 text-center">
+              <h3 className="pt-4 mb-2 text-2xl">Forgot Your Password?</h3>
+              <p className="mb-4 text-sm text-gray-700">
+                We get it, stuff happens. Just enter your email address below
+                and we'll send you a link to reset your password!
+              </p>
             </div>
-            <div className="flex flex-wrap mt-6 relative">
-              <div className="w-1/2">
-                <small>Remember password?</small>
+            <form
+              onSubmit={resetPw}
+              className="px-8 pt-6 pb-8 mb-4 bg-white rounded"
+            >
+              <div className="mb-4">
+                <label
+                  className="block mb-2 text-sm font-bold text-gray-700"
+                  htmlFor="email"
+                >
+                  Email
+                </label>
+                <input
+                  className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                  id="email"
+                  type="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter Email Address..."
+                />
               </div>
-              <div className="w-1/2 text-right">
-                <Link href="/auth/login">
-                  <a href="#pablo" className="text-blueGray-200">
-                    <small>Return to Login</small>
+              <div className="mb-6 text-center">
+                {loading ? (
+                  <button
+                    className="w-full px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-red-700 focus:outline-none focus:shadow-outline"
+                    type="submit"
+                    disabled
+                  >
+                    Resetting Password...
+                  </button>
+                ) : (
+                  <button
+                    className="w-full px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-red-700 focus:outline-none focus:shadow-outline"
+                    type="submit"
+                  >
+                    Reset Password
+                  </button>
+                )}
+              </div>
+              <hr className="mb-6 border-t" />
+              <div className="text-center">
+                <Link href={"/auth/signup"}>
+                  <a className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800">
+                    Create an Account!
                   </a>
                 </Link>
               </div>
-            </div>
+              <div className="text-center">
+                <Link href={"/auth/login"}>
+                  <a className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800">
+                    Already have an account? Login!
+                  </a>
+                </Link>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -133,4 +107,4 @@ export default function Login() {
   );
 }
 
-Login.layout = Auth;
+ForgotPassword.layout = Auth;
