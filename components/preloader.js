@@ -1,34 +1,13 @@
-// import { motion } from "framer-motion";
+export default function Preloader() {
+  const circleCommonClasses = "h-4 w-4 bg-black rounded-full";
 
-// const loaderVariants = {
-//   animationOne: {
-//     x: [-20, 20],
-//     y: [0, -30],
-//     transition: {
-//       x: {
-//         yoyo: Infinity,
-//         duration: 0.5,
-//       },
-//       x: {
-//         yoyo: Infinity,
-//         duration: 0.25,
-//         ease: "easeOut",
-//       },
-//     },
-//   },
-// };
-
-const Preloader = () => {
   return (
-    <div className="flex justify-center items-center">
-      <div
-        className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
-        role="status"
-      >
-        <span className="visually-hidden"></span>
+    <div className="flex h-screen">
+      <div className="flex m-auto">
+        <div className={`${circleCommonClasses} mr-2 animate-bounce`}></div>
+        <div className={`${circleCommonClasses} mr-2 animate-bounce200`}></div>
+        <div className={`${circleCommonClasses} animate-bounce400`}></div>
       </div>
     </div>
   );
-};
-
-export default Preloader;
+}

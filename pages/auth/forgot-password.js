@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../firebase-config";
-import { useRouter } from "next/router";
 import { Notification } from "../../components/Toast/Notification";
 import Auth from "../../components/Layout/Auth";
 
@@ -15,12 +14,11 @@ export default function ForgotPassword() {
     e.preventDefault();
     setLoading(true);
     try {
-      const user = await sendPasswordResetEmail(auth, email);
-      if (user) {
-        console.log(user);
+      await sendPasswordResetEmail(auth, email).then(() => {
         setStatus("success");
-        setResponse(`Reset Link sent to ${user}`);
-      }
+        setResponse("Reset Link successfully sent to your email");
+        setEmail("");
+      });
     } catch (err) {
       console.log(err.message);
       setStatus("error");
@@ -39,67 +37,69 @@ export default function ForgotPassword() {
             style={{ backgroundImage: "url('/brand/choys.svg')" }}
           ></div>
 
-          <div className="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
-            <div className="px-8 mb-4 text-center">
-              <h3 className="pt-4 mb-2 text-2xl">Forgot Your Password?</h3>
-              <p className="mb-4 text-sm text-gray-700">
-                We get it, stuff happens. Just enter your email address below
-                and we'll send you a link to reset your password!
-              </p>
+          <div className="relative flex flex-col min-w-0 break-words lg:w-1/2 mb-6 shadow-lg rounded-lg bg-white border-0">
+            <div className="rounded-t mb-0 px-6 py-6">
+              <div className="mb-6">
+                <h6 className="text-blueGray-500 text-sm font-bold">
+                  Forgot Password
+                </h6>
+              </div>
             </div>
             <form
               onSubmit={resetPw}
               className="px-8 pt-6 pb-8 mb-4 bg-white rounded"
             >
-              <div className="mb-4">
+              <div className="relative w-full mb-3 border-b border-black py-2">
                 <label
-                  className="block mb-2 text-sm font-bold text-gray-700"
-                  htmlFor="email"
+                  className="block text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
                 >
-                  Email
+                  Email Address
                 </label>
                 <input
-                  className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                  id="email"
                   type="email"
+                  className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                  placeholder="Email"
+                  required
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter Email Address..."
                 />
               </div>
-              <div className="mb-6 text-center">
+              <div className="text-center mt-6">
                 {loading ? (
                   <button
-                    className="w-full px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-red-700 focus:outline-none focus:shadow-outline"
-                    type="submit"
+                    type="button"
+                    className="bg-blue-300 text-white active:bg-blue-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                     disabled
                   >
-                    Resetting Password...
+                    Sending Reset Link...
                   </button>
                 ) : (
                   <button
-                    className="w-full px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-red-700 focus:outline-none focus:shadow-outline"
+                    className="bg-blue-500 text-white active:bg-blue-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                     type="submit"
+                    disabled={!email}
                   >
                     Reset Password
                   </button>
                 )}
               </div>
-              <hr className="mb-6 border-t" />
-              <div className="text-center">
-                <Link href={"/auth/signup"}>
-                  <a className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800">
-                    Create an Account!
-                  </a>
-                </Link>
-              </div>
-              <div className="text-center">
-                <Link href={"/auth/login"}>
-                  <a className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800">
-                    Already have an account? Login!
-                  </a>
-                </Link>
-              </div>
             </form>
+            <div className="flex flex-wrap mt-6 relative mx-6">
+              <div className="w-1/2">
+                <Link href="/auth/signup">
+                  <a className="text-blueGray-200">
+                    <small>Create Account</small>
+                  </a>
+                </Link>
+              </div>
+              <div className="w-1/2 text-right">
+                <Link href="/auth/login">
+                  <a href="#pablo" className="text-blueGray-200">
+                    <small>Login</small>
+                  </a>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
