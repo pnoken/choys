@@ -8,7 +8,7 @@ export default function Analytics() {
   useEffect(() => {
     const getAthleteActivities = async () => {
       axiosInstance
-        .get("/athletes/100725108/stats")
+        .get("/athlete/activities")
         .then(function (response) {
           console.log(response.data);
           setData(response.data);
