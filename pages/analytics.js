@@ -28,6 +28,7 @@ export default function Analytics() {
           {data && data.length > 0 ? (
             data.map((stravadata) => {
               const {
+                athlete,
                 distance,
                 average_speed,
                 average_heartrate,
@@ -35,6 +36,7 @@ export default function Analytics() {
               } = stravadata;
               return (
                 <StravaCard
+                  key={athlete.id}
                   distance={distance}
                   average_speed={average_speed}
                   average_heartrate={average_heartrate}
