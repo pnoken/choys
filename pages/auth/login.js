@@ -24,7 +24,6 @@ export default function Login() {
         setTimeout(() => router.push("/"), 2000);
       }
     } catch (err) {
-      console.log(err.message);
       setStatus("error");
       setResponse(err.message);
     }

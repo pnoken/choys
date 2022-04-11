@@ -1,36 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
 import { onAuthStateChanged, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase-config";
+import { Notification } from "../Toast/Notification";
 
 export default function CardSettings() {
-  const [user, setUser] = React.useState("");
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
+  const [user, setUser] = useState("");
+  const [fullName, setFullName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  const [response, setResponse] = useState("");
+  const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });
 
   console.log(user);
 
-  const updateUser = () => {
+  const updateUser = async () => {
+    setLoading(true);
     return updateProfile(auth.currentUser, {
-      displayName: firstName + " " + lastName,
-    });
+      displayName: fullName,
+    })
+      .then(() => {
+        setStatus("success");
+        setResponse(`Successfully updated profile`);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setStatus("error");
+        setResponse(error.message);
+        setLoading(false);
+      });
   };
 
   return (
     <>
+      {response && <Notification message={response} status={status} />}
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
         <div className="rounded-t bg-white mb-0 px-6 py-6">
           <div className="text-center flex justify-between">
             <h6 className="text-blueGray-700 text-xl font-bold">My account</h6>
-            <button
-              className="bg-blueGray-700 active:bg-blue-600 text-black font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-              type="button"
-              onClick={updateUser}
-            >
-              Update Info
-            </button>
+            {loading ? (
+              <button
+                className="bg-blueGray-700 active:bg-blue-600 text-black font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                type="button"
+                disabled
+              >
+                Updating
+              </button>
+            ) : (
+              <button
+                className="bg-blueGray-700 active:bg-blue-600 text-black font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                type="button"
+                onClick={updateUser}
+              >
+                Update Info
+              </button>
+            )}
           </div>
         </div>
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
@@ -77,18 +103,18 @@ export default function CardSettings() {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    First Name
+                    Dispay Name
                   </label>
                   <input
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     // value={firstName}
-                    defaultValue={user?.displayName?.split(" ")[0]}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    defaultValue={user?.displayName}
+                    onChange={(e) => setFullName(e.target.value)}
                   />
                 </div>
               </div>
-              <div className="w-full lg:w-6/12 px-4">
+              {/* <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -103,12 +129,12 @@ export default function CardSettings() {
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   />
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <hr className="mt-6 border-b-1 border-blueGray-300" />
 
-            <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+            {/* <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Contact Information
             </h6>
             <div className="flex flex-wrap">
@@ -191,7 +217,7 @@ export default function CardSettings() {
                   ></textarea>
                 </div>
               </div>
-            </div>
+            </div> */}
           </form>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/router";
 import Preloader from "./preloader";
 
-const withAuth = (Component) => {
+const withAdminAuth = (Component) => {
   const Auth = (props) => {
     const [user, setUser] = useState("");
     const router = useRouter();
@@ -31,4 +31,4 @@ const withAuth = (Component) => {
   return Auth;
 };
 
-export default withAuth;
+export default withAdminAuth;
