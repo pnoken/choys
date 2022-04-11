@@ -1,6 +1,10 @@
 import * as admin from "firebase-admin";
-
-admin.initializeApp();
+import serviceAccount from "../../firebase-admin.json";
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL:
+    "https://choys-a2612-default-rtdb.asia-southeast1.firebasedatabase.app",
+});
 
 exports.addAdmin = functions.https.onCall((data, context) => {
   if (context.auth.token.admin !== true) {

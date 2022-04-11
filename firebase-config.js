@@ -1,16 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
-// import * as admin from "firebase-admin/app";
-
-// admin.initializeApp();
-
-// async function grantModeratorRole(email) {
-//   const user = await admin.auth().getUserByEmail(email);
-//   if (user.customClaims && user.customClaims.moderator === true) {
-//     return;
-//   }
-// }
 
 const firebaseConfig = {
   apiKey: "AIzaSyBBh9IniFiyQF99DHjOEZzvhaDRGCtJl6c",
