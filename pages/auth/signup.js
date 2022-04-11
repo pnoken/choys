@@ -15,7 +15,6 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState("");
   const [status, setStatus] = useState("");
-  const router = useRouter();
   const register = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -28,9 +27,7 @@ export default function Register() {
           setResponse(
             `Successfully signed up as ${user.user.email}. Check your inbox to confirm`
           );
-          setTimeout(() => router.push("/"), 3000);
         }
-        router.push("/");
       }
     } catch (err) {
       setStatus("error");
@@ -40,11 +37,11 @@ export default function Register() {
   };
   return (
     <>
-      {response && <Notification message={response} status={status} />}
       <div className="container mx-auto px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-4/12 px-4">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0">
+              {response && <Notification message={response} status={status} />}
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="mb-6">
                   <h6 className="text-blueGray-500 text-sm font-bold">
@@ -89,14 +86,27 @@ export default function Register() {
                     />
                   </div>
                   <div>
-                    <label className="inline-flex items-center cursor-pointer">
+                    <label class="block text-gray-500 font-bold my-4 flex items-center">
                       <input
-                        id="customCheckLogin"
+                        class="leading-loose text-pink-600 top-0"
                         type="checkbox"
-                        className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                        required
                       />
-                      <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                        Remember me
+                      <span class="ml-2 text-sm py-2 text-gray-600 text-left">
+                        Accept the{" "}
+                        <a
+                          href="#"
+                          class="font-semibold text-black border-b-2 border-gray-200 hover:border-gray-500"
+                        >
+                          Terms and Conditions of Choys{" "}
+                        </a>
+                        and{" "}
+                        <a
+                          href="#"
+                          class="font-semibold text-black border-b-2 border-gray-200 hover:border-gray-500"
+                        >
+                          the information data policy.
+                        </a>
                       </span>
                     </label>
                   </div>

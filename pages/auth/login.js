@@ -21,7 +21,7 @@ export default function Login() {
       if (user) {
         setStatus("success");
         setResponse(`Successfully logged in as ${user.user.email}`);
-        setTimeout(() => router.push("/"), 3000);
+        setTimeout(() => router.push("/"), 2000);
       }
     } catch (err) {
       console.log(err.message);
@@ -32,11 +32,11 @@ export default function Login() {
   };
   return (
     <>
-      {response && <Notification message={response} status={status} />}
       <div className="container mx-auto px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-4/12 px-4">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0">
+              {response && <Notification message={response} status={status} />}
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="mb-6">
                   <h6 className="text-blueGray-500 text-sm font-bold">
