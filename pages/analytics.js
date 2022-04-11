@@ -2,6 +2,7 @@ import withAuth from "../components/PrivateRoute";
 import Admin from "../components/Layout/Admin";
 import { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosconfig";
+import StravaCard from "../components/Cards/StravaStats";
 
 export default function Analytics() {
   const [data, setData] = useState([]);
@@ -23,7 +24,28 @@ export default function Analytics() {
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="w-full lg:w-8/12 px-1">{/* <CardAthleteData /> */}</div>
+        <div className="w-full px-1">
+          {data && data.length > 0 ? (
+            data.map((stravadata) => {
+              const {
+                distance,
+                average_speed,
+                average_heartrate,
+                location_country,
+              } = stravadata;
+              return (
+                <StravaCard
+                  distance={distance}
+                  average_speed={average_speed}
+                  average_heartrate={average_heartrate}
+                  location_country={location_country}
+                />
+              );
+            })
+          ) : (
+            <div>No Data found</div>
+          )}
+        </div>
         <div className="w-full lg:w-4/12 px-1">
           {/* <div>{data.id}</div> */}
           {data.length > 0 ? (

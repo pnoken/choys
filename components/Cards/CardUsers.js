@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import TableDropdown from "../Dropdowns/TableDropDown";
+import ConfirmDelete from "../Modal/DeleteModal";
 
 export default function CardUsers({ color }) {
+  const [open, setOpen] = useState(false);
   return (
     <>
+      {open && <ConfirmDelete open={open} setOpen={setOpen} />}
       <div
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
@@ -125,7 +128,7 @@ export default function CardUsers({ color }) {
                 </td>
 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                  <TableDropdown />
+                  <TableDropdown setOpen={setOpen} />
                 </td>
               </tr>
             </tbody>
