@@ -46,17 +46,7 @@ export default function Analytics() {
             <div>No Data found</div>
           )}
         </div>
-        <div className="w-full lg:w-4/12 px-1">
-          {/* <div>{data.id}</div> */}
-          {data.length > 0 ? (
-            <div>{data.distance}</div>
-          ) : (
-            <div>No Data found</div>
-          )}
-          {/* <div>{data.firstname}</div>
-          <div>{data.lastname}</div> */}
-          {/* <CardAPI redirectURI={redirectURI} authenticated={authenticated} /> */}
-        </div>
+        <div className="w-full lg:w-4/12 px-1"></div>
       </div>
     </>
   );
