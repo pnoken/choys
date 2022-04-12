@@ -5,7 +5,7 @@ export default function StravaCard({
   location_country,
 }) {
   return (
-    <section className="py-20 2xl:py-40 bg-gray-800">
+    <section className="py-20 2xl:py-40 bg-blue-800">
       <div className="container px-4 mx-auto">
         <div>
           <div className="flex flex-wrap -mx-6 lg:-mx-14">
@@ -63,9 +63,7 @@ export default function StravaCard({
               <h3 className="mt-12 mb-8 text-lg font-bold font-heading text-white">
                 Average Heartrate
               </h3>
-              <p className="text-lg text-gray-200">
-                The time, this accumsan augue, posuere posuere elit lorem.
-              </p>
+              <p className="text-lg text-gray-200">Heartrate</p>
             </div>
             <div className="w-full md:w-1/2 lg:w-1/4 px-6 lg:px-14">
               <div className="relative flex items-center justify-center mb-10 w-20 h-20">
