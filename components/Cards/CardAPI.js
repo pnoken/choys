@@ -1,12 +1,17 @@
 import React from "react";
 import axiosInstance from "../../utils/axiosconfig";
 
-export default function CardAPI({ redirectURI, authenticated }) {
+export default function CardAPI({
+  redirectURI,
+  authenticated,
+  setAuthenticated,
+}) {
   const revokeAccess = async () => {
     axiosInstance.post("https://www.strava.com/oauth/deauthorize");
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
     localStorage.removeItem("authenticated");
+    setAuthenticated(false);
   };
   return (
     <div className="p-4 max-w-sm bg-white rounded-lg border shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
@@ -19,8 +24,7 @@ export default function CardAPI({ redirectURI, authenticated }) {
       <ul className="my-4 space-y-3">
         {authenticated ? (
           <li>
-            <a
-              href="#revoke-access"
+            <button
               onClick={revokeAccess}
               className="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
             >
@@ -29,7 +33,7 @@ export default function CardAPI({ redirectURI, authenticated }) {
               <span className="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-green-200 rounded dark:bg-gray-700 dark:text-gray-400">
                 Authenticated
               </span>
-            </a>
+            </button>
             <span className="inline-flex items-center text-xs font-normal text-gray-500 hover:underline dark:text-gray-400">
               Click to revoke access
             </span>

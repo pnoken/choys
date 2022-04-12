@@ -45,7 +45,11 @@ export default function Settings() {
           <CardSettings />
         </div>
         <div className="w-full lg:w-4/12 px-1">
-          <CardAPI redirectURI={redirectURI} authenticated={authenticated} />
+          <CardAPI
+            redirectURI={redirectURI}
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
         </div>
       </div>
     </>
