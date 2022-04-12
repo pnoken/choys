@@ -1,118 +1,129 @@
-import { useEffect, useState } from "react";
-import axiosInstance from "../../utils/axiosconfig";
+import React, { useEffect } from "react";
+import Chart from "chart.js";
 
-export default function StravaCard() {
-  const [data, setData] = useState([]);
+export default function StravaCard({ distance, date }) {
   useEffect(() => {
-    const getAthleteActivities = () => {
-      axiosInstance
-        .get("/athlete/activities")
-        .then(function (response) {
-          console.log(response.data);
-          setData(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    };
-    getAthleteActivities();
-  }, []);
+    window.myLine = new Chart(document.getElementById("myChart"), {
+      type: "line",
+      options: {
+        maintainAspectRatio: false,
+        responsive: true,
+      },
+      data: {
+        labels: date,
+        datasets: [
+          {
+            label: "Total Distance Covered",
+            borderColor: "#4A5568",
+            data: distance,
+            fill: false,
+            pointBackgroundColor: "#4A5568",
+            borderWidth: "3",
+            pointBorderWidth: "4",
+            pointHoverRadius: "6",
+            pointHoverBorderWidth: "8",
+            pointHoverBorderColor: "rgb(74,85,104,0.2)",
+          },
+        ],
+      },
+      // options: {
+      //   legend: {
+      //     position: false,
+      //   },
+      //   scales: {
+      //     yAxes: [
+      //       {
+      //         gridLines: {
+      //           display: false,
+      //         },
+      //         display: false,
+      //       },
+      //     ],
+      //   },
+      // },
+    });
+  });
   return (
-    <section className="py-20 2xl:py-40 bg-blue-800">
-      {data && data.length > 0 ? (
-        data.map((stravadata, id) => {
-          const {
-            distance,
-            average_speed,
-            average_heartrate,
-            location_country,
-          } = stravadata;
-          return (
-            <div key={id} className="container px-4 mx-auto">
-              <div>
-                <div className="flex flex-wrap -mx-6 lg:-mx-14">
-                  <div className="w-full md:w-1/2 lg:w-1/4 px-6 lg:px-14 mb-16 lg:mb-0">
-                    <div className="relative flex items-center justify-center mb-10 w-20 h-20">
-                      {/* <img
-                  className="absolute inset-0 w-full h-full"
-                  src="zospace-assets/lines/circle-chart.svg"
-                  alt=""
-                /> */}
-                      <p className="text-2xl font-bold text-white">
-                        <span>{distance}</span>
-                        <span className="text-base">m</span>
-                      </p>
+    <>
+      {/* <Helmet>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script
+          defer
+          src="https://cdn.tuk.dev/dev/light-dark-switch.js"
+        ></script>
+      </Helmet> */}
+      <div className="flex items-center justify-center py-8 px-4">
+        <div className="w-11/12 lg:w-2/3">
+          <div className="flex flex-col justify-between h-full">
+            <div>
+              <div className="lg:flex w-full justify-between">
+                <h3 className="text-gray-600 dark:text-gray-400 leading-5 text-base md:text-xl font-bold">
+                  Total Distance Covered
+                </h3>
+                <div className="flex items-center justify-between lg:justify-start mt-2 md:mt-4 lg:mt-0">
+                  {/* <div className="flex items-center">
+                    <button className="py-2 px-4 bg-gray-100 dark:bg-gray-700 focus:outline-none ease-in duration-150 text-xs text-gray-600 dark:text-gray-400 hover:bg-gray-200">
+                      Dollars
+                    </button>
+                    <button className="py-2 px-4 bg-indigo-500 focus:outline-none text-white ease-in duration-150 text-xs hover:bg-indigo-600">
+                      Tickets
+                    </button>
+                  </div> */}
+                  <div className="lg:ml-14">
+                    <div className="bg-gray-100 dark:bg-gray-700 ease-in duration-150 hover:bg-gray-200 pb-2 pt-1 px-3 rounded-sm">
+                      <select className="text-xs text-gray-600 dark:text-gray-400 bg-transparent focus:outline-none">
+                        <option className="leading-1">Year</option>
+                        <option className="leading-1">2020</option>
+                        <option className="leading-1">2019</option>
+                      </select>
                     </div>
-                    <div className="py-px mb-12 bg-gray-500"></div>
-                    <h3 className="mt-12 mb-8 text-lg font-bold font-heading text-white">
-                      Distance
-                    </h3>
-                    <p className="text-lg text-gray-200">
-                      You covered a distanc of {distance} m
-                    </p>
-                  </div>
-                  <div className="w-full md:w-1/2 lg:w-1/4 px-6 lg:px-14 mb-16 lg:mb-0">
-                    <div className="relative flex items-center justify-center mb-10 w-20 h-20">
-                      {/* <img
-                  className="absolute inset-0 w-full h-full"
-                  src="zospace-assets/lines/circle-chart-purple.svg"
-                  alt=""
-                /> */}
-                      <p className="text-2xl font-bold text-white">
-                        <span>{average_speed}</span>
-                        <span className="text-base">m/h</span>
-                      </p>
-                    </div>
-                    <div className="py-px mb-12 bg-gray-500"></div>
-                    <h3 className="mt-12 mb-8 text-lg font-bold font-heading text-white">
-                      You covered an Average Speed of {average_speed}
-                    </h3>
-                    <p className="text-lg text-gray-200">Average Speed</p>
-                  </div>
-                  <div className="w-full md:w-1/2 lg:w-1/4 px-6 lg:px-14 mb-16 md:mb-0">
-                    <div className="relative flex items-center justify-center mb-10 w-20 h-20">
-                      {/* <img
-                  className="absolute inset-0 w-full h-full"
-                  src="zospace-assets/lines/circle-chart-green.svg"
-                  alt=""
-                /> */}
-                      <p className="text-2xl font-bold text-white">
-                        <span>{average_heartrate}</span>
-                        <span className="text-base">beats per min</span>
-                      </p>
-                    </div>
-                    <div className="py-px mb-12 bg-gray-500"></div>
-                    <h3 className="mt-12 mb-8 text-lg font-bold font-heading text-white">
-                      Average Heartrate
-                    </h3>
-                    <p className="text-lg text-gray-200">Heartrate</p>
-                  </div>
-                  <div className="w-full md:w-1/2 lg:w-1/4 px-6 lg:px-14">
-                    <div className="relative flex items-center justify-center mb-10 w-20 h-20">
-                      {/* <img
-                  className="absolute inset-0 w-full h-full"
-                  src="zospace-assets/lines/circle-chart-pink.svg"
-                  alt=""
-                /> */}
-                      <p className="text-2xl font-bold text-white">
-                        <span>{location_country}</span>
-                        <span className="text-base"></span>
-                      </p>
-                    </div>
-                    <div className="py-px mb-12 bg-gray-500"></div>
-                    <h3 className="mt-12 mb-8 text-lg font-bold font-heading text-white">
-                      Location Country
-                    </h3>
-                    <p className="text-lg text-gray-200">Location</p>
                   </div>
                 </div>
               </div>
+              <div className="flex items-end mt-6">
+                {/* <h3 className="text-indigo-500 leading-5 text-lg md:text-2xl">
+                  $65,875
+                </h3> */}
+                <div className="flex items-center md:ml-4 ml-1">
+                  {/* <p className="text-indigo-500 text-xs md:text-base">17%</p> */}
+                  {/* <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                  >
+                    <path
+                      d="M6 2.5V9.5"
+                      stroke="#4338CA"
+                      strokeWidth="0.75"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M8 4.5L6 2.5"
+                      stroke="#4338CA"
+                      strokeWidth="0.75"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M4 4.5L6 2.5"
+                      stroke="#4338CA"
+                      strokeWidth="0.75"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg> */}
+                </div>
+              </div>
             </div>
-          );
-        })
-      ) : (
-        <div>No Data found</div>
-      )}
-    </section>
+            <div className="mt-6">
+              <canvas id="myChart" width="1025" height="400" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
