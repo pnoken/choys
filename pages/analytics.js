@@ -4,7 +4,11 @@ import dynamic from "next/dynamic";
 import Preloader from "../components/preloader";
 
 const StravaCard = dynamic(() => import("../components/Cards/StravaStats"), {
-  loading: () => <Preloader />,
+  loading: () => (
+    <div>
+      <Preloader />
+    </div>
+  ),
 });
 
 export default function Analytics() {
