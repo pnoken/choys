@@ -1,5 +1,5 @@
 import React from "react";
-import axiosInstance from "../../utils/axiosconfig";
+import axios from "axios";
 
 export default function CardAPI({
   redirectURI,
@@ -7,11 +7,17 @@ export default function CardAPI({
   setAuthenticated,
 }) {
   const revokeAccess = async () => {
-    axiosInstance.post("https://www.strava.com/oauth/deauthorize");
-    localStorage.removeItem("access");
-    localStorage.removeItem("refresh");
-    localStorage.removeItem("authenticated");
-    setAuthenticated(false);
+    axios
+      .post("https://www.strava.com/oauth/deauthorize")
+      .then(() => {
+        localStorage.removeItem("access");
+        localStorage.removeItem("refresh");
+        localStorage.removeItem("authenticated");
+        setAuthenticated(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   return (
     <div className="p-4 max-w-sm bg-white rounded-lg border shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">

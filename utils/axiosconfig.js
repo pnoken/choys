@@ -38,9 +38,6 @@ axiosInstance.interceptors.response.use(
           return axios(error.response.config);
         })
         .catch((error) => {
-          const router = useRouter();
-          // destroyToken();
-          router.push("/auth/login");
           return Promise.reject(error);
         });
     }

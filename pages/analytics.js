@@ -2,7 +2,12 @@ import withAuth from "../components/PrivateRoute";
 import Admin from "../components/Layout/Admin";
 import { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosconfig";
-import StravaCard from "../components/Cards/StravaStats";
+import dynamic from "next/dynamic";
+import Preloader from "../components/preloader";
+
+const StravaCard = dynamic(() => import("../components/Cards/StravaStats"), {
+  loading: <Preloader />,
+});
 
 export default function Analytics() {
   const [data, setData] = useState([]);

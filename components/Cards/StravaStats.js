@@ -23,7 +23,7 @@ export default function StravaCard({
               </div>
               <div className="py-px mb-12 bg-gray-500"></div>
               <h3 className="mt-12 mb-8 text-lg font-bold font-heading text-white">
-                New tools
+                Distance
               </h3>
               <p className="text-lg text-gray-200">
                 You covered a distanc of {distance} km
@@ -43,7 +43,7 @@ export default function StravaCard({
               </div>
               <div className="py-px mb-12 bg-gray-500"></div>
               <h3 className="mt-12 mb-8 text-lg font-bold font-heading text-white">
-                Workshops
+                Average Speed
               </h3>
               <p className="text-lg text-gray-200">Average Speed</p>
             </div>
@@ -61,7 +61,7 @@ export default function StravaCard({
               </div>
               <div className="py-px mb-12 bg-gray-500"></div>
               <h3 className="mt-12 mb-8 text-lg font-bold font-heading text-white">
-                Meetings
+                Average Heartrate
               </h3>
               <p className="text-lg text-gray-200">
                 The time, this accumsan augue, posuere posuere elit lorem.
@@ -81,7 +81,7 @@ export default function StravaCard({
               </div>
               <div className="py-px mb-12 bg-gray-500"></div>
               <h3 className="mt-12 mb-8 text-lg font-bold font-heading text-white">
-                Webinars
+                Location Country
               </h3>
               <p className="text-lg text-gray-200">Location</p>
             </div>
