@@ -11,11 +11,11 @@ export default function StravaCard({
           <div className="flex flex-wrap -mx-6 lg:-mx-14">
             <div className="w-full md:w-1/2 lg:w-1/4 px-6 lg:px-14 mb-16 lg:mb-0">
               <div className="relative flex items-center justify-center mb-10 w-20 h-20">
-                <img
+                {/* <img
                   className="absolute inset-0 w-full h-full"
                   src="zospace-assets/lines/circle-chart.svg"
                   alt=""
-                />
+                /> */}
                 <p className="text-2xl font-bold text-white">
                   <span>{distance}</span>
                   <span className="text-base">km</span>
@@ -31,11 +31,11 @@ export default function StravaCard({
             </div>
             <div className="w-full md:w-1/2 lg:w-1/4 px-6 lg:px-14 mb-16 lg:mb-0">
               <div className="relative flex items-center justify-center mb-10 w-20 h-20">
-                <img
+                {/* <img
                   className="absolute inset-0 w-full h-full"
                   src="zospace-assets/lines/circle-chart-purple.svg"
                   alt=""
-                />
+                /> */}
                 <p className="text-2xl font-bold text-white">
                   <span>{average_speed}</span>
                   <span className="text-base">km/h</span>
@@ -49,11 +49,11 @@ export default function StravaCard({
             </div>
             <div className="w-full md:w-1/2 lg:w-1/4 px-6 lg:px-14 mb-16 md:mb-0">
               <div className="relative flex items-center justify-center mb-10 w-20 h-20">
-                <img
+                {/* <img
                   className="absolute inset-0 w-full h-full"
                   src="zospace-assets/lines/circle-chart-green.svg"
                   alt=""
-                />
+                /> */}
                 <p className="text-2xl font-bold text-white">
                   <span>{average_heartrate}</span>
                   <span className="text-base">beats per min</span>
@@ -69,11 +69,11 @@ export default function StravaCard({
             </div>
             <div className="w-full md:w-1/2 lg:w-1/4 px-6 lg:px-14">
               <div className="relative flex items-center justify-center mb-10 w-20 h-20">
-                <img
+                {/* <img
                   className="absolute inset-0 w-full h-full"
                   src="zospace-assets/lines/circle-chart-pink.svg"
                   alt=""
-                />
+                /> */}
                 <p className="text-2xl font-bold text-white">
                   <span>{location_country}</span>
                   <span className="text-base"></span>
