@@ -41,7 +41,7 @@ export default function Analytics() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full px-1">
-          {distance && distance.length > 0 ? (
+          {distance && distance.length > 0 && (
             <StravaCard
               distance={distance}
               date={date}
@@ -49,8 +49,6 @@ export default function Analytics() {
               // average_heartrate={average_heartrate}
               // location_country={location_country}
             />
-          ) : (
-            <div>No Data found</div>
           )}
         </div>
         <div className="w-full lg:w-4/12 px-1"></div>
