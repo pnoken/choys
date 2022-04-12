@@ -30,6 +30,7 @@ export default function Settings() {
           localStorage.setItem("refresh", response.data.refresh_token);
           localStorage.setItem("authenticated", true);
           setAuthenticated(true);
+          router.push("/analytics");
         })
         .catch(function (error) {
           console.log(error);
