@@ -13,11 +13,11 @@ export default function CardAPI({
         localStorage.removeItem("access");
         localStorage.removeItem("refresh");
         localStorage.removeItem("authenticated");
-        setAuthenticated(false);
       })
       .catch(function (error) {
         console.log(error);
       });
+    setAuthenticated(false);
   };
   return (
     <div className="p-4 max-w-sm bg-white rounded-lg border shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
