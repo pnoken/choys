@@ -47,7 +47,7 @@ export default function CardAPI({
         ) : (
           <li>
             <a
-              href={`https://www.strava.com/oauth/authorize?client_id=80223&response_type=code&redirect_uri=${redirectURI}&approval_prompt=force&scope=activity:read_all`}
+              href={`https://www.strava.com/oauth/authorize?client_id=80223&response_type=code&redirect_uri=${redirectURI}/analytics&approval_prompt=force&scope=activity:read_all`}
               className="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
             >
               <img src="api_providers/strava.png" alt="strava" />
