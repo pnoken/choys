@@ -2,13 +2,12 @@ import withAuth from "../components/PrivateRoute";
 import Admin from "../components/Layout/Admin";
 import { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosconfig";
-import StravaCard from "../components/Cards/StravaStats";
-// import dynamic from "next/dynamic";
-// import Preloader from "../components/preloader";
+import dynamic from "next/dynamic";
+import Preloader from "../components/preloader";
 
-// const StravaCard = dynamic(() => import("../components/Cards/StravaStats"), {
-//   loading: <Preloader />,
-// });
+const StravaCard = dynamic(() => import("../components/Cards/StravaStats"), {
+  loading: () => <Preloader />,
+});
 
 export default function Analytics() {
   const [data, setData] = useState([]);
@@ -32,9 +31,8 @@ export default function Analytics() {
       <div className="flex flex-wrap">
         <div className="w-full px-1">
           {data && data.length > 0 ? (
-            data.map((stravadata) => {
+            data.map((stravadata, id) => {
               const {
-                athlete,
                 distance,
                 average_speed,
                 average_heartrate,
@@ -42,7 +40,7 @@ export default function Analytics() {
               } = stravadata;
               return (
                 <StravaCard
-                  key={athlete.id}
+                  key={id}
                   distance={distance}
                   average_speed={average_speed}
                   average_heartrate={average_heartrate}
