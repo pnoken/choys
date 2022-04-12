@@ -30,7 +30,7 @@ export default function Settings() {
           localStorage.setItem("refresh", response.data.refresh_token);
           localStorage.setItem("authenticated", true);
           setAuthenticated(true);
-          router.push("/analytics");
+          window.location.href = "/analytics";
         })
         .catch(function (error) {
           console.log(error);
