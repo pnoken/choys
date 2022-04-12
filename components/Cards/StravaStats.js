@@ -26,7 +26,7 @@ export default function StravaCard({
                 Distance
               </h3>
               <p className="text-lg text-gray-200">
-                You covered a distanc of {distance} km
+                You covered a distanc of {distance} m
               </p>
             </div>
             <div className="w-full md:w-1/2 lg:w-1/4 px-6 lg:px-14 mb-16 lg:mb-0">
@@ -38,7 +38,7 @@ export default function StravaCard({
                 /> */}
                 <p className="text-2xl font-bold text-white">
                   <span>{average_speed}</span>
-                  <span className="text-base">km/h</span>
+                  <span className="text-base">m/h</span>
                 </p>
               </div>
               <div className="py-px mb-12 bg-gray-500"></div>
