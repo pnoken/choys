@@ -16,7 +16,7 @@ export default function StravaCard() {
         });
     };
     getAthleteActivities();
-  }, []);
+  }, [data]);
   return (
     <section className="py-20 2xl:py-40 bg-blue-800">
       {data && data.length > 0 ? (
