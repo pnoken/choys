@@ -4,7 +4,7 @@ import axiosInstance from "../../utils/axiosconfig";
 export default function StravaCard() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    const getAthleteActivities = async () => {
+    const getAthleteActivities = () => {
       axiosInstance
         .get("/athlete/activities")
         .then(function (response) {
@@ -16,7 +16,7 @@ export default function StravaCard() {
         });
     };
     getAthleteActivities();
-  }, [data]);
+  }, []);
   return (
     <section className="py-20 2xl:py-40 bg-blue-800">
       {data && data.length > 0 ? (
