@@ -26,32 +26,10 @@ export default function StravaCard({ distance, date }) {
           },
         ],
       },
-      // options: {
-      //   legend: {
-      //     position: false,
-      //   },
-      //   scales: {
-      //     yAxes: [
-      //       {
-      //         gridLines: {
-      //           display: false,
-      //         },
-      //         display: false,
-      //       },
-      //     ],
-      //   },
-      // },
     });
   });
   return (
     <>
-      {/* <Helmet>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-        <script
-          defer
-          src="https://cdn.tuk.dev/dev/light-dark-switch.js"
-        ></script>
-      </Helmet> */}
       <div className="flex items-center justify-center py-8 px-4">
         <div className="w-11/12 lg:w-2/3">
           <div className="flex flex-col justify-between h-full">
