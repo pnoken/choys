@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { onAuthStateChanged, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import { Notification } from "../Toast/Notification";
+import ImageUpload from "./CardImageUpload";
 
 export default function CardSettings() {
   const [user, setUser] = useState("");
@@ -10,6 +11,8 @@ export default function CardSettings() {
   const [response, setResponse] = useState("");
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
+  const [selectedFile, setSelectedFile] = useState();
+  const [preview, setPreview] = useState();
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });
@@ -31,6 +34,29 @@ export default function CardSettings() {
         setResponse(error.message);
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview(undefined);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
+  const onSelectFile = (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(undefined);
+      return;
+    }
+
+    // I've kept this example simple by using the first image instead of multiple
+    setSelectedFile(e.target.files[0]);
   };
 
   return (
@@ -65,6 +91,13 @@ export default function CardSettings() {
               User Information
             </h6>
             <div className="flex flex-wrap">
+              <div className="w-full px-4">
+                <ImageUpload
+                  preview={preview}
+                  selectedFile={selectedFile}
+                  onSelectFile={onSelectFile}
+                />
+              </div>
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
@@ -97,6 +130,7 @@ export default function CardSettings() {
                   />
                 </div>
               </div>
+
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label

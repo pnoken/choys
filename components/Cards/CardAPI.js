@@ -34,8 +34,11 @@ export default function CardAPI({
               onClick={revokeAccess}
               className="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
             >
-              <img src="api_providers/strava.png" alt="strava" />
-              <span className="flex-1 ml-3 whitespace-nowrap">Strava</span>
+              <img
+                src="api_providers/api_logo_pwrdBy_strava_stack_light.png"
+                alt="strava"
+              />
+              {/* <span className="flex-1 ml-3 whitespace-nowrap">Strava</span> */}
               <span className="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-green-200 rounded dark:bg-gray-700 dark:text-gray-400">
                 Authenticated
               </span>
@@ -50,8 +53,11 @@ export default function CardAPI({
               href={`https://www.strava.com/oauth/authorize?client_id=80223&response_type=code&redirect_uri=${redirectURI}&approval_prompt=force&scope=activity:read_all`}
               className="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
             >
-              <img src="api_providers/strava.png" alt="strava" />
-              <span className="flex-1 ml-3 whitespace-nowrap">Strava</span>
+              <img
+                src="api_providers/btn_strava_connectwith_orange.png"
+                alt="strava"
+              />
+              {/* <span className="flex-1 ml-3 whitespace-nowrap">Strava</span> */}
               <span className="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
                 Popular
               </span>
