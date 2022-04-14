@@ -26,8 +26,8 @@ export default function Settings() {
       await axios(config)
         .then(function (response) {
           console.log(response.data);
-          localStorage.setItem("access", response.data.access_token);
-          localStorage.setItem("refresh", response.data.refresh_token);
+          localStorage.setItem("strava_access", response.data.access_token);
+          localStorage.setItem("strava_refresh", response.data.refresh_token);
           localStorage.setItem("authenticated", true);
           setAuthenticated(true);
           window.location.href = "/analytics";

@@ -1,5 +1,5 @@
 import React from "react";
-import axiosInstance from "../../utils/axiosconfig";
+import axiosInstance from "../../utils/axiosStrava";
 
 export default function CardAPI({
   redirectURI,
@@ -10,8 +10,8 @@ export default function CardAPI({
     axiosInstance
       .post("https://www.strava.com/oauth/deauthorize")
       .then(() => {
-        localStorage.removeItem("access");
-        localStorage.removeItem("refresh");
+        localStorage.removeItem("strava_access");
+        localStorage.removeItem("strava_refresh");
         localStorage.removeItem("authenticated");
       })
       .catch(function (error) {

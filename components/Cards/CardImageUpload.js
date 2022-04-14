@@ -1,4 +1,9 @@
-export default function ImageUpload({ preview, selectedFile, onSelectFile }) {
+export default function ImageUpload({
+  preview,
+  selectedFile,
+  onSelectFile,
+  photoURL,
+}) {
   return (
     <div className="py-3 center mx-auto">
       <div className="bg-white px-4 py-5 rounded-lg shadow-lg text-center w-48">
@@ -6,6 +11,7 @@ export default function ImageUpload({ preview, selectedFile, onSelectFile }) {
           <img
             className="w-auto mx-auto rounded-full object-cover object-center"
             src={
+              photoURL ||
               preview ||
               "https://i1.pngguru.com/preview/137/834/449/cartoon-cartoon-character-avatar-drawing-film-ecommerce-facial-expression-png-clipart.jpg"
             }

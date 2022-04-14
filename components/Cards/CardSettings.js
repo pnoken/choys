@@ -23,6 +23,7 @@ export default function CardSettings() {
     setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: fullName,
+      photoURL: preview,
     })
       .then(() => {
         setStatus("success");
@@ -96,6 +97,7 @@ export default function CardSettings() {
                   preview={preview}
                   selectedFile={selectedFile}
                   onSelectFile={onSelectFile}
+                  photo={user?.photoURL}
                 />
               </div>
               <div className="w-full lg:w-6/12 px-4">

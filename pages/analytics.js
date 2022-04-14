@@ -3,7 +3,7 @@ import Admin from "../components/Layout/Admin";
 import dynamic from "next/dynamic";
 import Preloader from "../components/preloader";
 import { useState, useEffect } from "react";
-import axiosInstance from "../utils/axiosconfig";
+import axiosInstance from "../utils/axiosStrava";
 import { formatDateTime } from "../utils/shared";
 
 const StravaCard = dynamic(() => import("../components/Cards/StravaStats"), {

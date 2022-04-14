@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useRouter } from "next/router";
 
 const refresh =
   typeof window !== "undefined" ? localStorage.getItem("refresh") : null;
@@ -10,7 +9,7 @@ let headers = {};
 headers.Authorization = `Bearer ${access}`;
 
 const axiosInstance = axios.create({
-  baseURL: "https://www.strava.com/api/v3",
+  baseURL: "https://us-central1-choys-backend.cloudfunctions.net/api",
   timeout: 10000,
   headers,
 });
@@ -38,6 +37,8 @@ axiosInstance.interceptors.response.use(
           return axios(error.response.config);
         })
         .catch((error) => {
+          localStorage.removeItem("access");
+          localStorage.removeItem("refresh");
           return Promise.reject(error);
         });
     }
