@@ -1,9 +1,4 @@
-import React from "react";
-import CardActivationRate from "../components/Cards/CardActivationRate.js";
-import CardKeyWords from "../components/Cards/CardKeyWords.js";
-import CardTopWellbeingActivities from "../components/Cards/CardTopWellbeingActivities.js";
-import NewJoinerVideo from "../components/Cards/NewJoinerVideo.js";
-import WellbeingChampionBoard from "../components/Cards/WellBeingChampionBoard.js";
+import React, { Fragment } from "react";
 import withAuth from "../components/PrivateRoute.js";
 import User from "../components/Layout/User";
 import CardWellbeing from "../components/Cards/CardWellBeing.js";
@@ -30,7 +25,7 @@ export default function Dashboard() {
   ];
 
   return (
-    <>
+    <Fragment>
       <div>
         <h2>Your Wellbeing Library</h2>
         <h4>Wellbeing Content recommended for you</h4>
@@ -48,7 +43,7 @@ export default function Dashboard() {
           <CardWellbeingMenu />;
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 
