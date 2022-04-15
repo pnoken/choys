@@ -96,11 +96,11 @@ export default function UserSidebar() {
               </li>
 
               <li className="items-center">
-                <Link href="/users">
+                <Link href="/benefits">
                   <a
                     className={
                       "text-xs flex uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/users") !== -1
+                      (router.pathname.indexOf("/benefits") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
