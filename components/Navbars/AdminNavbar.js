@@ -1,17 +1,11 @@
 import React from "react";
 import UserDropdown from "../Dropdowns/UserDropdown.js";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../firebase-config";
 import Nofification from "../Dropdowns/Notification.js";
+import Link from "next/link";
 
 export default function Navbar() {
-  const [user, setUser] = React.useState("");
   const [search, setSearch] = React.useState(false);
   const [openNotfication, setOpenNotification] = React.useState(false);
-
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
   return (
     <>
       {openNotfication && (
@@ -21,32 +15,23 @@ export default function Navbar() {
       <nav className="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
         <div className="w-full mx-auto items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
           {/* Brand */}
-          <a
-            className="text-grey-50 text-sm mr-2 hidden lg:inline-block font-semibold"
-            href="#pablo"
-            onClick={(e) => e.preventDefault()}
-          >
-            Dashboard
-          </a>
-          <a
-            className="text-grey-50 text-sm mr-2 hidden lg:inline-block font-semibold"
-            href="#pablo"
-            onClick={(e) => e.preventDefault()}
-          >
-            Habits Reminder
-          </a>
-          <a
-            className="text-grey-50 text-sm mr-2 hidden lg:inline-block font-semibold"
-            href="#pablo"
-            onClick={(e) => e.preventDefault()}
-          >
-            Events
-          </a>
-          <a
-            className="text-grey-50 text-sm mr-2 hidden lg:inline-block font-semibold"
-            href="#pablo"
-            onClick={(e) => e.preventDefault()}
-          >
+
+          <Link href="/dashboard">
+            <a className="text-grey-50 text-sm mr-2 hidden lg:inline-block font-semibold">
+              Dashboard
+            </a>
+          </Link>
+          <Link href="/habits-reminder">
+            <a className="text-grey-50 text-sm mr-2 hidden lg:inline-block font-semibold">
+              Habits Reminder
+            </a>
+          </Link>
+          <Link href="/events">
+            <a className="text-grey-50 text-sm mr-2 hidden lg:inline-block font-semibold">
+              Events
+            </a>
+          </Link>
+          <a className="text-grey-50 text-sm mr-2 hidden lg:inline-block font-semibold">
             <i
               className="fas fa-bell"
               onClick={() => setOpenNotification(true)}
@@ -55,7 +40,7 @@ export default function Navbar() {
 
           {!search && (
             <i
-              className="fas fa-search"
+              className="fas fa-search hidden lg:inline-block"
               onMouseEnter={() => setSearch(true)}
             ></i>
           )}
@@ -79,8 +64,8 @@ export default function Navbar() {
           )}
 
           {/* User */}
-          <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
-            <UserDropdown user={user?.email} />
+          <ul className="flex-col md:flex-row list-none cursor-grab items-center hidden md:flex">
+            <UserDropdown />
           </ul>
         </div>
       </nav>

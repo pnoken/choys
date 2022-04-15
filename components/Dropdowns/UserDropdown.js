@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { createPopper } from "@popperjs/core";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import Link from "next/link";
+import { onAuthStateChanged } from "firebase/auth";
 
-const UserDropdown = ({ user }) => {
+const UserDropdown = ({}) => {
+  const [user, setUser] = React.useState("");
   const logout = async () => {
     await signOut(auth);
   };
+
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+  });
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
@@ -24,8 +30,7 @@ const UserDropdown = ({ user }) => {
   return (
     <>
       <a
-        className="text-blueGray-500 block"
-        href="#pablo"
+        className="text-blueGray-500"
         ref={btnDropdownRef}
         onClick={(e) => {
           e.preventDefault();
@@ -39,7 +44,7 @@ const UserDropdown = ({ user }) => {
               className="w-full rounded-full align-middle border-none shadow-lg"
               src="/user/team-1-800x800.jpg"
             /> */}
-            <span>{user?.substring(1, 0)}</span>
+            <span>{user?.displayName?.substring(1, 0)}</span>
           </span>
         </div>
       </a>
@@ -51,8 +56,8 @@ const UserDropdown = ({ user }) => {
         }
       >
         <div className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
-          Logged in as:
-          <p>{user}</p>{" "}
+          <p>Logged in as:</p>
+          {user?.email}
         </div>
         <div className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
           Organization:
