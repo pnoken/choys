@@ -1,4 +1,5 @@
 import axios from "axios";
+import {} from "../firebase-config";
 
 const refresh =
   typeof window !== "undefined" ? localStorage.getItem("refresh") : null;
@@ -9,7 +10,7 @@ let headers = {};
 headers.Authorization = `Bearer ${access}`;
 
 const axiosInstance = axios.create({
-  baseURL: "https://us-central1-choys-backend.cloudfunctions.net/api",
+  baseURL: "https://us-central1-choys-backend.cloudfunctions.net/api/users",
   timeout: 10000,
   headers,
 });

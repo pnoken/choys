@@ -6,7 +6,7 @@ import ImageUpload from "./CardImageUpload";
 import { ref, uploadBytes } from "firebase/storage";
 
 export default function CardSettings() {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState([]);
   const [fullName, setFullName] = useState("");
   // const [lastName, setLastName] = useState("");
   const [response, setResponse] = useState("");
@@ -44,6 +44,7 @@ export default function CardSettings() {
       });
   };
 
+  console.log("user", user);
   useEffect(() => {
     if (!selectedFile) {
       setPreview(undefined);
