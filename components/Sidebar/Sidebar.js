@@ -68,8 +68,8 @@ export default function Sidebar() {
                   <a
                     className={
                       "text-xs flex uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/") !== -1
-                        ? "text-blue-500 hover:text-blue-600"
+                      (router.pathname.indexOf("/index") !== -1
+                        ? "text-blue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
@@ -85,7 +85,7 @@ export default function Sidebar() {
                     className={
                       "text-xs flex uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/calendar") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        ? "text-blue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
@@ -101,7 +101,7 @@ export default function Sidebar() {
                     className={
                       "text-xs flex uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/users") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        ? "text-blue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
@@ -116,7 +116,7 @@ export default function Sidebar() {
                     className={
                       "text-xs flex uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/messages") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        ? "text-blue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
@@ -131,7 +131,7 @@ export default function Sidebar() {
                     className={
                       "text-xs flex uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/play") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        ? "text-blue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
@@ -146,7 +146,7 @@ export default function Sidebar() {
                     className={
                       "text-xs flex uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/stats") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        ? "text-blue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
@@ -161,7 +161,7 @@ export default function Sidebar() {
                     className={
                       "text-xs flex uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/settings") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        ? "text-blue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >

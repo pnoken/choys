@@ -11,7 +11,7 @@ export const CalendarProvider = ({ children }) => {
 
   const [datesInMonth, setDatesInMonth] = useState([]);
   const [holidayTypes, setHolidayTypes] = useState([]);
-  const holidays = [];
+  const [holidays] = useState([]);
 
   const currentMonth = format(selectedDate, "LLL");
   const currentYear = format(selectedDate, "yyyy");
