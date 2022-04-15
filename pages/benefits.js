@@ -1,4 +1,5 @@
 import React from "react";
+import withAuth from "../components/PrivateRoute";
 import User from "../components/Layout/User";
 import CardMyInsurance from "../components/MyInsurance/CardMyInsurance";
 
@@ -48,4 +49,4 @@ export default function Benefits() {
   );
 }
 
-Benefits.layout = User;
+Benefits.layout = withAuth(User);

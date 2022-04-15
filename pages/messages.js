@@ -1,5 +1,5 @@
 import withAuth from "../components/PrivateRoute";
-import Admin from "../components/Layout/Admin";
+import User from "../components/Layout/User";
 
 export default function Messages() {
   return (
@@ -14,4 +14,4 @@ export default function Messages() {
   );
 }
 
-Messages.layout = withAuth(Admin);
+Messages.layout = withAuth(User);

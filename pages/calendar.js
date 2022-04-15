@@ -1,5 +1,5 @@
 import withAuth from "../components/PrivateRoute";
-import Admin from "../components/Layout/Admin";
+import User from "../components/Layout/User";
 import { CalendarCard } from "../components/Calendar/Calendar";
 
 export default function Calendar() {
@@ -14,4 +14,4 @@ export default function Calendar() {
   );
 }
 
-Calendar.layout = withAuth(Admin);
+Calendar.layout = withAuth(User);
