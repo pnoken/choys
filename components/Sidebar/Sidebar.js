@@ -20,10 +20,7 @@ export default function Sidebar() {
           </button>
           {/* Brand */}
           <Link href="/">
-            <a
-              href="#choys"
-              className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-            >
+            <a className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
               <img src="brand/choys.svg" alt="choys logo" />
             </a>
           </Link>
@@ -48,10 +45,7 @@ export default function Sidebar() {
               <div className="flex flex-wrap">
                 <div className="w-6/12">
                   <Link href="/">
-                    <a
-                      href="#pablo"
-                      className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                    >
+                    <a className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
                       <img src="brand/choys.svg" alt="choys logo" />
                     </a>
                   </Link>
@@ -96,9 +90,7 @@ export default function Sidebar() {
                     }
                   >
                     <img src="sidebar-icons/calendar.svg" alt="calendar" />
-                    <span className="md:hidden ml-2 text-lg inline-block">
-                      Calendar
-                    </span>
+                    <span className="md:hidden ml-2 text-lg">Calendar</span>
                   </a>
                 </Link>
               </li>
@@ -114,9 +106,7 @@ export default function Sidebar() {
                     }
                   >
                     <img src="sidebar-icons/users.svg" alt="users" />
-                    <span className="md:hidden ml-2 text-lg inline-block">
-                      Calendar
-                    </span>
+                    <span className="md:hidden ml-2 text-lg">Calendar</span>
                   </a>
                 </Link>
               </li>

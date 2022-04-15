@@ -20,10 +20,7 @@ export default function UserSidebar() {
           </button>
           {/* Brand */}
           <Link href="/">
-            <a
-              href="#choys"
-              className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-            >
+            <a className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
               <img src="brand/choys.svg" alt="choys logo" />
             </a>
           </Link>
@@ -48,10 +45,7 @@ export default function UserSidebar() {
               <div className="flex flex-wrap">
                 <div className="w-6/12">
                   <Link href="/">
-                    <a
-                      href="#pablo"
-                      className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                    >
+                    <a className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
                       <img src="brand/choys.svg" alt="choys logo" />
                     </a>
                   </Link>
@@ -72,7 +66,6 @@ export default function UserSidebar() {
               <li className="items-center">
                 <Link href="/">
                   <a
-                    href="#home"
                     className={
                       "text-xs flex uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/") !== -1
@@ -89,18 +82,15 @@ export default function UserSidebar() {
               <li className="items-center">
                 <Link href="/calendar">
                   <a
-                    href="#calendar"
                     className={
-                      "text-xs uppercase py-3 font-bold block " +
+                      "text-xs flex uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/calendar") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
                     <img src="sidebar-icons/calendar.svg" alt="calendar" />
-                    <span className="md:hidden ml-2 text-lg inline-block">
-                      Calendar
-                    </span>
+                    <span className="md:hidden ml-2 text-lg">Calendar</span>
                   </a>
                 </Link>
               </li>
@@ -108,24 +98,23 @@ export default function UserSidebar() {
               <li className="items-center">
                 <Link href="/users">
                   <a
-                    href="#users"
                     className={
-                      "text-xs uppercase py-3 font-bold block " +
+                      "text-xs flex uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/users") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
                     <img src="sidebar-icons/users.svg" alt="users" />
+                    <span className="md:hidden ml-2 text-lg">Calendar</span>
                   </a>
                 </Link>
               </li>
               <li className="items-center">
                 <Link href="/messages">
                   <a
-                    href="#messages"
                     className={
-                      "text-xs uppercase py-3 font-bold block " +
+                      "text-xs flex uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/messages") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
@@ -139,9 +128,8 @@ export default function UserSidebar() {
               <li className="items-center">
                 <Link href="/play">
                   <a
-                    href="#play"
                     className={
-                      "text-xs uppercase py-3 font-bold block " +
+                      "text-xs flex uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/play") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
@@ -155,9 +143,8 @@ export default function UserSidebar() {
               <li className="items-center">
                 <Link href="/analytics">
                   <a
-                    href="#analytics"
                     className={
-                      "text-xs uppercase py-3 font-bold block " +
+                      "text-xs flex uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/stats") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
@@ -171,9 +158,8 @@ export default function UserSidebar() {
               <li className="items-center">
                 <Link href="/settings">
                   <a
-                    href="#settings"
                     className={
-                      "text-xs uppercase py-3 font-bold block " +
+                      "text-xs flex uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/settings") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
