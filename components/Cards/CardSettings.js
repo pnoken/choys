@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged, updateProfile } from "firebase/auth";
-import { auth } from "../../firebase-config";
+import { auth, storage } from "../../firebase-config";
 import { Notification } from "../Toast/Notification";
 import ImageUpload from "./CardImageUpload";
+import { ref, uploadBytes } from "firebase/storage";
 
 export default function CardSettings() {
   const [user, setUser] = useState("");
@@ -17,14 +18,20 @@ export default function CardSettings() {
     setUser(currentUser);
   });
 
-  console.log(user);
-
   const updateUser = async () => {
     setLoading(true);
-    return updateProfile(auth.currentUser, {
-      displayName: fullName,
-      photoURL: preview,
-    })
+    const storageRef = ref(storage, selectedFile.name);
+    uploadBytes(storageRef, selectedFile)
+      .then((snapshot) => {
+        console.log("üploaded", snapshot);
+      })
+      .then((file) => {
+        updateProfile(auth.currentUser, {
+          displayName: fullName ? fullName : user?.displayName,
+          photoURL: file ? file : user?.photoURL,
+        });
+      })
+
       .then(() => {
         setStatus("success");
         setResponse(`Successfully updated profile`);
@@ -60,6 +67,7 @@ export default function CardSettings() {
     setSelectedFile(e.target.files[0]);
   };
 
+  console.log("selected file", selectedFile);
   return (
     <>
       {response && <Notification message={response} status={status} />}

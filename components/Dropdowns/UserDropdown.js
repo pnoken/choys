@@ -50,40 +50,51 @@ const UserDropdown = ({ user }) => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
+        <div className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
+          Logged in as:
+          <p>{user}</p>{" "}
+        </div>
+        <div className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
+          Organization:
+          <Link href="/settings">
+            <a className="text-blue-700">
+              <p>Add Organization</p>
+            </a>
+          </Link>
+        </div>
         <Link href="/settings">
           <a
             className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:text-blue-700"
             }
-            onClick={(e) => e.preventDefault()}
           >
-            Profile
+            My Account
           </a>
         </Link>
-        <a
-          href="#support"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Support
-        </a>
-        <a
-          href="#help"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Help
-        </a>
+        <Link href="/support">
+          <a
+            className={
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:text-blue-700"
+            }
+          >
+            Support
+          </a>
+        </Link>
+        <Link href="/releases">
+          <a
+            className={
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:text-blue-700"
+            }
+          >
+            Release Notes
+          </a>
+        </Link>
         <div className="h-0 my-2 border border-solid border-blueGray-100" />
         <Link href="auth/login">
           <a
             onClick={logout}
             className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:text-blue-700"
             }
           >
             Signout

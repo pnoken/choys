@@ -27,7 +27,7 @@ export default function Dashboard() {
   return (
     <Fragment>
       <div>
-        <h2>Your Wellbeing Library</h2>
+        <h2 className="text-lg">Your Wellbeing Library</h2>
         <h4>Wellbeing Content recommended for you</h4>
       </div>
       <div className="flex flex-wrap">
