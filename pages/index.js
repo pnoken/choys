@@ -4,6 +4,7 @@ import User from "../components/Layout/User";
 import CardWellbeing from "../components/Cards/CardWellBeing.js";
 import CardDonought from "../components/Cards/CardDonought.js";
 import CardWellbeingMenu from "../components/Cards/CardWellbeingMenu.js";
+import ChoysImpact from "../components/Cards/CardChoysImpact.js";
 
 export default function Dashboard() {
   const wellBeingData = [
@@ -36,11 +37,11 @@ export default function Dashboard() {
         })}
       </div>
       <div className="flex flex-wrap mt-4">
-        <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-1">
+        <div className="w-full xl:w-4/12 mb-12 xl:mb-0 px-1">
           <CardDonought />
         </div>
         <div className="w-full xl:w-4/12 px-1">
-          <CardWellbeingMenu />;
+          <ChoysImpact />
         </div>
       </div>
     </Fragment>
