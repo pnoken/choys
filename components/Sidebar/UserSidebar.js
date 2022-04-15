@@ -106,7 +106,7 @@ export default function UserSidebar() {
                     }
                   >
                     <img src="sidebar-icons/users.svg" alt="users" />
-                    <span className="md:hidden ml-2 text-lg">Calendar</span>
+                    <span className="md:hidden ml-2 text-lg">User</span>
                   </a>
                 </Link>
               </li>
