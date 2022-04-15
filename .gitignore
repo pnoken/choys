@@ -33,3 +33,5 @@ yarn-error.log*
 
 #firebase-admin
 firebase-admin.js
+
+pages/company
