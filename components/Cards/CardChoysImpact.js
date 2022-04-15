@@ -10,8 +10,8 @@ export default function ChoysImpact() {
           June Steps Challenges
         </p>
         <p>20,000/100,000 Steps</p>
-        <div class="w-full bg-gray-200 mt-3 rounded-full h-2.5 dark:bg-gray-700">
-          <div class="bg-blue-600 h-2.5 rounded-full w-1/5"></div>
+        <div className="w-full bg-gray-200 mt-3 rounded-full h-2.5 dark:bg-gray-700">
+          <div className="bg-blue-600 h-2.5 rounded-full w-1/5"></div>
         </div>
         <div className="flex space-x-10 overflow-hidden mt-5">
           <div>
