@@ -1,6 +1,6 @@
 import React from "react";
-import CardUsers from "../components/Cards/CardUsers";
-import Admin from "../components/Layout/Admin";
+import CardUsers from "../../components/Cards/CardUsers";
+import Admin from "../../components/Layout/Admin";
 
 export default function Users() {
   return (
