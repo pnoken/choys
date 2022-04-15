@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { CalendarContext } from "../../context";
 import { CalendarCell } from "./CalendarCell";
 
-export const DAYS_IN_WEEK = ["Mon", "Tues", "Wed", "Thu", "Fri", "Sat", "Sun"];
+export const DAYS_IN_WEEK = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
 
 export const CalendarCard = () => {
   const { datesInMonth } = useContext(CalendarContext);
