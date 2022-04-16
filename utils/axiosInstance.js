@@ -1,16 +1,20 @@
 import axios from "axios";
-import {} from "../firebase-config";
+import { getAuth } from "firebase/auth";
+
+const auth = getAuth();
+console.log("auth", auth);
+const user = auth?.currentUser;
+console.log("current user", user);
 
 const refresh =
-  typeof window !== "undefined" ? localStorage.getItem("refresh") : null;
-const access =
-  typeof window !== "undefined" ? localStorage.getItem("access") : null;
+  typeof window !== "undefined" ? localStorage.getItem("strava_refresh") : null;
 
 let headers = {};
-headers.Authorization = `Bearer ${access}`;
+
+headers.Authorization = `Bearer ${user?.accessToken}`;
 
 const axiosInstance = axios.create({
-  baseURL: "https://us-central1-choys-backend.cloudfunctions.net/api/users",
+  baseURL: "https://us-central1-choys-a2612.cloudfunctions.net/api",
   timeout: 10000,
   headers,
 });

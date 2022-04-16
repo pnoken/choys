@@ -64,11 +64,11 @@ export default function Sidebar() {
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none p-4">
               <li className="items-center">
-                <Link href="/">
+                <Link href="/admin">
                   <a
                     className={
                       "text-xs flex uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/index") !== -1
+                      (router.pathname.indexOf("/admin/index") !== -1
                         ? "text-blue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
@@ -80,11 +80,11 @@ export default function Sidebar() {
               </li>
 
               <li className="items-center">
-                <Link href="/calendar">
+                <Link href="/admin/calendar">
                   <a
                     className={
                       "text-xs flex uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/calendar") !== -1
+                      (router.pathname.indexOf("/admin/calendar") !== -1
                         ? "text-blue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
@@ -96,11 +96,11 @@ export default function Sidebar() {
               </li>
 
               <li className="items-center">
-                <Link href="/users">
+                <Link href="/admin/users">
                   <a
                     className={
                       "text-xs flex uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/users") !== -1
+                      (router.pathname.indexOf("/admin/users") !== -1
                         ? "text-blue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }

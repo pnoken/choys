@@ -1,13 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import TableDropdown from "../Dropdowns/TableDropDown";
-import ConfirmDelete from "../Modal/DeleteModal";
+import UserRow from "./UserRow";
+import axiosInstance from "../../utils/axiosInstance";
 
-export default function CardUsers({ color, user }) {
-  const [open, setOpen] = useState(false);
+export default function UserTable({ color }) {
+  const [users, setUsers] = useState([]);
+  const [noUsers, setNoUsers] = useState(false);
+
+  useEffect(() => {
+    axiosInstance
+      .get("/users")
+      .then((users) => {
+        if (users.data.users.length > 0) {
+          setUsers(users.data.users);
+        } else {
+          setNoUsers(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <>
-      {open && <ConfirmDelete open={open} setOpen={setOpen} />}
       <div
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
@@ -93,56 +109,24 @@ export default function CardUsers({ color, user }) {
                 ></th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                  <img
-                    src="/img/bootstrap.jpg"
-                    className="h-12 w-12 bg-white rounded-full border"
-                    alt="..."
-                  ></img>{" "}
-                  <span
-                    className={
-                      "ml-3 font-bold " +
-                      +(color === "light" ? "text-blueGray-600" : "text-white")
-                    }
-                  >
-                    {user.displayName}
-                  </span>
-                </th>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  {user.role}
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <i className="fas fa-circle text-orange-500 mr-2"></i> pending
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <span
-                    className={
-                      "ml-3 font-bold " +
-                      +(color === "light" ? "text-blueGray-600" : "text-white")
-                    }
-                  >
-                    {user.email}
-                  </span>
-                </td>
-
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                  <TableDropdown setOpen={setOpen} />
-                </td>
-              </tr>
-            </tbody>
+            {users &&
+              users.length > 0 &&
+              users.map((user, i) => {
+                // const { email, displayName, role } = user;
+                return <UserRow key={i} user={user} color={color} />;
+              })}
           </table>
+          {noUsers && <h1>No users found</h1>}
         </div>
       </div>
     </>
   );
 }
 
-CardUsers.defaultProps = {
+UserTable.defaultProps = {
   color: "light",
 };
 
-CardUsers.propTypes = {
+UserTable.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

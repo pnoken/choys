@@ -21,7 +21,6 @@ export default function Login() {
       if (user) {
         setStatus("success");
         setResponse(`Successfully logged in as ${user.user.email}`);
-        localStorage.setItem("äccess", user.user.accessToken);
         localStorage.setItem("refresh", user.user.refreshToken);
         setTimeout(() => router.push("/"), 2000);
       }
