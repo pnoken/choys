@@ -1,12 +1,14 @@
 import { Fragment, useState } from "react";
 import TableDropdown from "../Dropdowns/TableDropDown";
 import ConfirmDelete from "../Modal/DeleteModal";
+// import EditProfile from "../Modal/EditModal";
 
 export default function UserRow({ user, color }) {
   const [open, setOpen] = useState(false);
   return (
     <Fragment>
-      {open && <ConfirmDelete open={open} setOpen={setOpen} />}
+      {open && <ConfirmDelete open={open} setOpen={setOpen} id={user.id} />}
+      {/* {open && <EditProfile open={open} setOpen={setOpen} />} */}
       <tbody>
         <tr>
           <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
