@@ -5,6 +5,7 @@ import Preloader from "../components/preloader";
 import { useState, useEffect } from "react";
 import axiosInstance from "../utils/axiosStrava";
 import { formatDateTime } from "../utils/shared";
+import Link from "next/link";
 
 const StravaCard = dynamic(() => import("../components/Cards/StravaStats"), {
   loading: () => (
@@ -41,7 +42,7 @@ export default function Analytics() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full px-1">
-          {distance && distance.length > 0 && (
+          {distance && distance.length > 0 ? (
             <StravaCard
               distance={distance}
               date={date}
@@ -49,9 +50,20 @@ export default function Analytics() {
               // average_heartrate={average_heartrate}
               // location_country={location_country}
             />
+          ) : (
+            <div>
+              <h1>Strava Data not available. Please Authenticate</h1>
+              <Link href="/settings">
+                <a>
+                  <img
+                    src="/api_providers/btn_strava_connectwith_orange.png"
+                    alt="authenticated with Strava"
+                  />
+                </a>
+              </Link>
+            </div>
           )}
         </div>
-        <div className="w-full lg:w-4/12 px-1"></div>
       </div>
     </>
   );
