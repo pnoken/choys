@@ -7,7 +7,7 @@ const user = auth?.currentUser;
 console.log("current user", user);
 
 const refresh =
-  typeof window !== "undefined" ? localStorage.getItem("strava_refresh") : null;
+  typeof window !== "undefined" ? localStorage.getItem("refresh") : null;
 
 let headers = {};
 

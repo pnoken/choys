@@ -31,7 +31,7 @@ export default function StravaCard({ distance, date }) {
   return (
     <>
       <div className="flex items-center justify-center py-8 px-4">
-        <div>
+        <div className="w-full">
           <div>
             <div className="lg:flex w-full justify-between">
               <h3 className="text-gray-600 dark:text-gray-400 leading-5 text-base md:text-xl font-bold">
