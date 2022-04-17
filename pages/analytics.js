@@ -1,5 +1,5 @@
 import withAuth from "../components/PrivateRoute";
-import Admin from "../components/Layout/Admin";
+import User from "../components/Layout/User";
 import dynamic from "next/dynamic";
 import Preloader from "../components/preloader";
 import { useState, useEffect } from "react";
@@ -57,4 +57,4 @@ export default function Analytics() {
   );
 }
 
-Analytics.layout = withAuth(Admin);
+Analytics.layout = withAuth(User);

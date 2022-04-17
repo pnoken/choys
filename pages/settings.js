@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import withAuth from "../components/PrivateRoute";
-import Admin from "../components/Layout/Admin";
+import User from "../components/Layout/User";
 import CardSettings from "../components/Cards/CardSettings";
 import CardAPI from "../components/Cards/CardAPI";
 import { useRouter } from "next/router";
@@ -57,4 +57,4 @@ export default function Settings() {
   );
 }
 
-Settings.layout = withAuth(Admin);
+Settings.layout = withAuth(User);

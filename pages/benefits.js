@@ -6,7 +6,7 @@ import CardMyInsurance from "../components/MyInsurance/CardMyInsurance";
 export default function Benefits() {
   const myInsurance = [
     {
-      url: "/insurance/my-coverage.jpg",
+      url: "/wellbeing-library/chronic-care.png",
       title: "My Coverage",
       subTitle: "My Coverage",
       description: `Glossier echo park pug, church-key sartorial biodiesel

@@ -122,22 +122,8 @@ export default function UserSidebar() {
                   </a>
                 </Link>
               </li>
-              <li className="items-center">
-                <Link href="/messages">
-                  <a
-                    className={
-                      "text-xs flex uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/messages") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
-                    }
-                  >
-                    <img src="sidebar-icons/message.svg" alt="messages" />
-                    <span className="md:hidden ml-2 text-lg">Messages</span>
-                  </a>
-                </Link>
-              </li>
-              <li className="items-center">
+
+              {/* <li className="items-center">
                 <Link href="/play">
                   <a
                     className={
@@ -151,7 +137,7 @@ export default function UserSidebar() {
                     <span className="md:hidden ml-2 text-lg">Activity</span>
                   </a>
                 </Link>
-              </li>
+              </li> */}
               <li className="items-center">
                 <Link href="/analytics">
                   <a
@@ -164,6 +150,34 @@ export default function UserSidebar() {
                   >
                     <img src="sidebar-icons/stats.svg" alt="stats" />
                     <span className="md:hidden ml-2 text-lg">Analytics</span>
+                  </a>
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link href="/library">
+                  <a
+                    className={
+                      "text-xs flex uppercase py-3 font-bold block " +
+                      (router.pathname.indexOf("/messages") !== -1
+                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        : "text-blueGray-700 hover:text-blueGray-500")
+                    }
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
+                      />
+                    </svg>
+                    <span className="md:hidden ml-2 text-lg">Messages</span>
                   </a>
                 </Link>
               </li>
