@@ -1,4 +1,4 @@
-export default function Example() {
+export default function UserForm() {
   return (
     <>
       <div>
@@ -325,7 +325,7 @@ export default function Example() {
                 Notifications
               </h3>
               <p className="mt-1 text-sm text-gray-600">
-                Decide which communications you'd like to receive and how.
+                {`Decide which communications you'd like to receive and how`}
               </p>
             </div>
           </div>
