@@ -3,7 +3,7 @@ import withAuth from "../../components/PrivateRoute.js";
 import dynamic from "next/dynamic";
 import Preloader from "../../components/preloader";
 
-export default function Users() {
+export default function AdminUsers() {
   const UserTable = dynamic(() => import("../../components/Users/UserTable"), {
     loading: () => (
       <div>
@@ -13,16 +13,14 @@ export default function Users() {
   });
   return (
     <>
-      <div className="flex flex-wrap mt-4">
-        <div className="w-full mb-12 px-1">
+      <div className="flex flex-wrap">
+        <div className="w-full mb-12 xl:mb-0 px-1">
           <UserTable color="light" />
         </div>
-        <div className="w-full mb-12 px-1">
-          {/* <CardTable color="dark" /> */}
-        </div>
+        <div className="w-full mb-12 px-1"></div>
       </div>
     </>
   );
 }
 
-Users.layout = withAuth(Admin);
+AdminUsers.layout = withAuth(Admin);

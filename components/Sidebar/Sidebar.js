@@ -79,7 +79,7 @@ export default function Sidebar() {
                 </Link>
               </li>
 
-              <li className="items-center">
+              {/* <li className="items-center">
                 <Link href="/admin/calendar">
                   <a
                     className={
@@ -93,7 +93,7 @@ export default function Sidebar() {
                     <span className="md:hidden ml-2 text-lg">Calendar</span>
                   </a>
                 </Link>
-              </li>
+              </li> */}
 
               <li className="items-center">
                 <Link href="/admin/users">
@@ -110,7 +110,7 @@ export default function Sidebar() {
                   </a>
                 </Link>
               </li>
-              <li className="items-center">
+              {/* <li className="items-center">
                 <Link href="/messages">
                   <a
                     className={
@@ -124,7 +124,7 @@ export default function Sidebar() {
                     <span className="md:hidden ml-2 text-lg">Messages</span>
                   </a>
                 </Link>
-              </li>
+              </li> */}
               <li className="items-center">
                 <Link href="/play">
                   <a

@@ -5,7 +5,7 @@ import CardWellbeing from "../components/Cards/CardWellBeing.js";
 import CardDonought from "../components/Cards/CardDonought.js";
 import ChoysImpact from "../components/Cards/CardChoysImpact.js";
 
-export default function Dashboard() {
+export default function EmployeeDashboard() {
   const wellBeingData = [
     {
       url: "/wellbeing-library/chronic-care.png",
@@ -47,4 +47,4 @@ export default function Dashboard() {
   );
 }
 
-Dashboard.layout = withAuth(User);
+EmployeeDashboard.layout = withAuth(User);

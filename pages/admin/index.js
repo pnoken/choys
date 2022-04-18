@@ -8,7 +8,7 @@ import WellbeingChampionBoard from "../../components/Cards/WellBeingChampionBoar
 import withAuth from "../../components/PrivateRoute.js";
 import Admin from "../../components/Layout/Admin";
 
-export default function Dashboard() {
+export default function AdminDashboard() {
   return (
     <>
       <div className="flex flex-wrap">
@@ -37,4 +37,4 @@ export default function Dashboard() {
   );
 }
 
-Dashboard.layout = withAuth(Admin);
+AdminDashboard.layout = withAuth(Admin);

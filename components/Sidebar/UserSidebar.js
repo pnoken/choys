@@ -177,7 +177,7 @@ export default function UserSidebar() {
                         d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
                       />
                     </svg>
-                    <span className="md:hidden ml-2 text-lg">Messages</span>
+                    <span className="md:hidden ml-2 text-lg">Library</span>
                   </a>
                 </Link>
               </li>
