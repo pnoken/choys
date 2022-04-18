@@ -9,10 +9,10 @@ const user = auth?.currentUser;
 
 let headers = {};
 
-headers.Authorization = `Bearer ${user?.accessToken}`;
+headers.Authorization = `Bearer ${user.accessToken}`;
 
 const axiosInstance = axios.create({
-  baseURL: "https://us-central1-choys-a2612.cloudfunctions.net/api/",
+  baseURL: "https://us-central1-choys-a2612.cloudfunctions.net/api",
   timeout: 10000,
   headers,
 });

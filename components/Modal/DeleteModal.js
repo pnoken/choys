@@ -3,12 +3,12 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
 import axiosInstance from "../../utils/axiosInstance";
 
-export default function ConfirmDelete({ open, setOpen, id }) {
+export default function ConfirmDelete({ open, setOpen, user }) {
   const cancelButtonRef = useRef(null);
 
   const deleteUser = async () => {
     await axiosInstance
-      .delete(`users/${id}`)
+      .delete(`users/${user.id}`)
       .then((res) => console.log("res", res));
   };
 
@@ -67,7 +67,7 @@ export default function ConfirmDelete({ open, setOpen, id }) {
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Are you sure you want to deactivate your account? All of
+                        Are you sure you want to deactivate {user.email}? All of
                         your data will be permanently removed. This action
                         cannot be undone.
                       </p>

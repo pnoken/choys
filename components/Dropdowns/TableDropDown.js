@@ -1,7 +1,7 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
 
-const TableDropdown = ({ setOpen }) => {
+const TableDropdown = ({ setOpen, setEdit }) => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
@@ -39,7 +39,7 @@ const TableDropdown = ({ setOpen }) => {
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
-          // onClick={() => setOpen(true)}
+          onClick={() => setEdit(true)}
         >
           Edit User
         </button>
