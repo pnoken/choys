@@ -26,8 +26,8 @@ export default function Analytics() {
         .get("/athlete/activities")
         .then(function (response) {
           for (let dataObj of response.data) {
-            totalDistance.push(dataObj.distance);
-            timestamp.push(formatDateTime(dataObj.start_date));
+            totalDistance.unshift(dataObj.distance);
+            timestamp.unshift(formatDateTime(dataObj.start_date));
           }
           setDistance(totalDistance);
           setDate(timestamp);
@@ -43,13 +43,7 @@ export default function Analytics() {
       <div className="flex flex-wrap">
         <div className="w-full px-1">
           {distance && distance.length > 0 ? (
-            <StravaCard
-              distance={distance}
-              date={date}
-              // average_speed={average_speed}
-              // average_heartrate={average_heartrate}
-              // location_country={location_country}
-            />
+            <StravaCard distance={distance} date={date} />
           ) : (
             <div>
               <h1>Strava Data not available. Please Authenticate</h1>
