@@ -21,7 +21,7 @@ export default function Sidebar() {
           {/* Brand */}
           <Link href="/">
             <a className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
-              <img src="brand/choys.svg" alt="choys logo" />
+              <img src="/brand/choys.svg" alt="choys logo" />
             </a>
           </Link>
           {/* User */}
@@ -46,7 +46,7 @@ export default function Sidebar() {
                 <div className="w-6/12">
                   <Link href="/">
                     <a className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
-                      <img src="brand/choys.svg" alt="choys logo" />
+                      <img src="/brand/choys.svg" alt="choys logo" />
                     </a>
                   </Link>
                 </div>
@@ -73,7 +73,7 @@ export default function Sidebar() {
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
-                    <img src="sidebar-icons/home.svg" alt="home" />
+                    <img src="/sidebar-icons/home.svg" alt="home" />
                     <span className="md:hidden ml-2 text-lg">Home</span>
                   </a>
                 </Link>
@@ -105,7 +105,7 @@ export default function Sidebar() {
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
-                    <img src="sidebar-icons/users.svg" alt="users" />
+                    <img src="/sidebar-icons/users.svg" alt="users" />
                     <span className="md:hidden ml-2 text-lg">Users</span>
                   </a>
                 </Link>
@@ -125,7 +125,7 @@ export default function Sidebar() {
                   </a>
                 </Link>
               </li> */}
-              <li className="items-center">
+              {/* <li className="items-center">
                 <Link href="/play">
                   <a
                     className={
@@ -139,8 +139,8 @@ export default function Sidebar() {
                     <span className="md:hidden ml-2 text-lg">Activity</span>
                   </a>
                 </Link>
-              </li>
-              <li className="items-center">
+              </li> */}
+              {/* <li className="items-center">
                 <Link href="/analytics">
                   <a
                     className={
@@ -154,22 +154,22 @@ export default function Sidebar() {
                     <span className="md:hidden ml-2 text-lg">Analytics</span>
                   </a>
                 </Link>
-              </li>
-              <li className="items-center">
-                <Link href="/settings">
+              </li> */}
+              {/* <li className="items-center">
+                <Link href="/admin/settings">
                   <a
                     className={
                       "text-xs flex uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/settings") !== -1
+                      (router.pathname.indexOf("/admin/settings") !== -1
                         ? "text-blue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
-                    <img src="sidebar-icons/settings.svg" alt="settings" />
+                    <img src="/sidebar-icons/settings.svg" alt="settings" />
                     <span className="md:hidden ml-2 text-lg">Settings</span>
                   </a>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
