@@ -2,6 +2,7 @@ import React from "react";
 import UserDropdown from "../Dropdowns/UserDropdown.js";
 import Nofification from "../Dropdowns/Notification.js";
 import Link from "next/link";
+import { BellIcon } from "@heroicons/react/outline";
 
 export default function Navbar() {
   const [search, setSearch] = React.useState(false);
@@ -32,10 +33,13 @@ export default function Navbar() {
             </a>
           </Link>
           <a className="text-grey-50 text-sm mr-2 hidden lg:inline-block font-semibold">
-            <i
-              className="fas fa-bell"
-              onClick={() => setOpenNotification(true)}
-            ></i>
+            <button
+              type="button"
+              className="ml-auto flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+            >
+              <span className="sr-only">View notifications</span>
+              <BellIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
           </a>
 
           {!search && (

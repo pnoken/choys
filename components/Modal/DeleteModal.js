@@ -9,7 +9,12 @@ export default function ConfirmDelete({ open, setOpen, user }) {
   const deleteUser = async () => {
     await axiosInstance
       .delete(`users/${user.uid}`)
-      .then((res) => console.log("res", res));
+      .then(() => {
+        console.log("Successfully Delete User");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

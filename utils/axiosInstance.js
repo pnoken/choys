@@ -3,6 +3,7 @@ import { getAuth } from "firebase/auth";
 
 const auth = getAuth();
 const user = auth?.currentUser;
+console.log("user", user);
 
 // const refresh =
 //   typeof window !== "undefined" ? localStorage.getItem("refresh") : null;

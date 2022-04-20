@@ -6,6 +6,8 @@ import { useState, useEffect } from "react";
 import axiosInstance from "../utils/axiosStrava";
 import { formatDateTime } from "../utils/shared";
 import Link from "next/link";
+import { getDatabase, ref, set } from "firebase/database";
+import { getAuth } from "firebase/auth";
 
 const StravaCard = dynamic(() => import("../components/Cards/StravaStats"), {
   loading: () => (
@@ -19,6 +21,9 @@ export default function Analytics() {
   const [distance, setDistance] = useState([]);
   const [date, setDate] = useState([]);
   useEffect(() => {
+    const auth = getAuth();
+    const userId = auth?.currentUser.uid;
+    console.log("user id", userId);
     let totalDistance = [];
     let timestamp = [];
     const getAthleteActivities = () => {
@@ -32,12 +37,26 @@ export default function Analytics() {
           setDistance(totalDistance);
           setDate(timestamp);
         })
+        .then(() => {
+          writeUserData(userId, distance, date);
+        })
         .catch(function (error) {
           console.log(error);
         });
     };
     getAthleteActivities();
   }, []);
+
+  //Write strava data to database
+
+  function writeUserData(userId, distance, date) {
+    const db = getDatabase();
+    set(ref(db, "strava/" + userId), {
+      distance: distance,
+      date: date,
+    });
+  }
+
   return (
     <>
       <div className="flex flex-wrap">

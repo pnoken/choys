@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { createPopper } from "@popperjs/core";
+import React, { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import Link from "next/link";
@@ -14,97 +14,66 @@ const UserDropdown = ({}) => {
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });
+
   // dropdown props
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-  const btnDropdownRef = React.createRef();
-  const popoverDropdownRef = React.createRef();
-  const openDropdownPopover = () => {
-    createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "bottom-start",
-    });
-    setDropdownPopoverShow(true);
-  };
-  const closeDropdownPopover = () => {
-    setDropdownPopoverShow(false);
-  };
+  const userNavigation = [
+    { name: "Logged in as:", href: "#loggedinas" },
+    { name: user?.email, href: "#email" },
+    { name: "Add Organization", href: "/settings" },
+    { name: "Settings", href: "/settings" },
+    { name: "Support", href: "/support" },
+    { name: "Releases", href: "/releases" },
+  ];
+
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
   return (
     <>
-      <a
-        className="text-blueGray-500"
-        ref={btnDropdownRef}
-        onClick={(e) => {
-          e.preventDefault();
-          dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
-        }}
-      >
-        <div className="items-center flex">
-          <span className="w-12 h-12 text-sm text-black bg-blue-200 inline-flex items-center justify-center rounded-full">
-            {/* <img
-              alt="..."
-              className="w-full rounded-full align-middle border-none shadow-lg"
-              src="/user/team-1-800x800.jpg"
-            /> */}
-            <span>{user?.displayName?.substring(1, 0)}</span>
-          </span>
+      <Menu as="div" className="ml-3 relative">
+        <div>
+          <Menu.Button className="max-w-xs bg-gray-200 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-200 focus:ring-white">
+            <span className="sr-only">Open user menu</span>
+            <div className="h-8 w-8 rounded-full">
+              {user?.displayName?.substring(1, 0)}
+            </div>
+          </Menu.Button>
         </div>
-      </a>
-      <div
-        ref={popoverDropdownRef}
-        className={
-          (dropdownPopoverShow ? "block " : "hidden ") +
-          "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-        }
-      >
-        <div className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
-          <p>Logged in as:</p>
-          {user?.email}
-        </div>
-        <div className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">
-          Organization:
-          <Link href="/settings">
-            <a className="text-blue-700">
-              <p>Add Organization</p>
-            </a>
-          </Link>
-        </div>
-        <Link href="/settings">
-          <a
-            className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:text-blue-700"
-            }
-          >
-            My Account
-          </a>
-        </Link>
-        <Link href="/support">
-          <a
-            className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:text-blue-700"
-            }
-          >
-            Support
-          </a>
-        </Link>
-        <Link href="/releases">
-          <a
-            className={
-              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:text-blue-700"
-            }
-          >
-            Release Notes
-          </a>
-        </Link>
-        <div className="h-0 my-2 border border-solid border-blueGray-100" />
-
-        <button
-          onClick={logout}
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:text-blue-700"
-          }
+        <Transition
+          as={Fragment}
+          enter="transition ease-out duration-100"
+          enterFrom="transform opacity-0 scale-95"
+          enterTo="transform opacity-100 scale-100"
+          leave="transition ease-in duration-75"
+          leaveFrom="transform opacity-100 scale-100"
+          leaveTo="transform opacity-0 scale-95"
         >
-          Signout
-        </button>
-      </div>
+          <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+            {userNavigation.map((item) => (
+              <Menu.Item key={item.name}>
+                {({ active }) => (
+                  <Link href={item.href}>
+                    <a
+                      className={classNames(
+                        active ? "bg-gray-100" : "",
+                        "block px-4 py-2 text-sm text-gray-700"
+                      )}
+                    >
+                      {item.name}
+                    </a>
+                  </Link>
+                )}
+              </Menu.Item>
+            ))}
+            <button
+              onClick={logout}
+              className={classNames("block px-4 py-2 text-sm text-gray-700")}
+            >
+              Signout
+            </button>
+          </Menu.Items>
+        </Transition>
+      </Menu>
     </>
   );
 };

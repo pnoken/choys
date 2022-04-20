@@ -1,33 +1,37 @@
 import React, { useState } from "react";
-import Auth from "../../components/Layout/Auth";
-import {
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-} from "firebase/auth";
-import { auth } from "../../firebase-config";
-import { Notification } from "../../components/Toast/Notification";
 import Link from "next/link";
-
-export default function Register() {
+import Auth from "../../components/Layout/Auth";
+import { auth } from "../../firebase-config.js";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "next/router";
+import { Notification } from "../../components/Toast/Notification";
+import TenantSelect from "../../components/Dropdowns/TenantSelect";
+export default function EmployeeLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState("");
   const [status, setStatus] = useState("");
-  const register = async (e) => {
+  const [selected, setSelected] = useState({});
+  const router = useRouter();
+  const login = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    auth.tenantId = selected?.tenantId;
     try {
-      const user = await createUserWithEmailAndPassword(auth, email, password);
-      if (user) {
-        if (user) {
+      await signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
           setStatus("success");
-          sendEmailVerification(auth.currentUser);
-          setResponse(
-            `Successfully signed up as ${user.user.email}. Check your inbox to confirm`
-          );
-        }
-      }
+          // setResponse(`Successfully logged in as ${user.user.email}`);
+          // localStorage.setItem("refresh", user.user.refreshToken);
+          return userCredential.user.getIdToken();
+        })
+        .then((idToken) => {
+          console.log("id token", idToken);
+          setTimeout(() => router.push("/"), 2000);
+          // Send the ID token to server for verification. ID token should be scoped to TENANT-ID.
+        });
     } catch (err) {
       setStatus("error");
       setResponse(err.message);
@@ -44,14 +48,20 @@ export default function Register() {
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="mb-6">
                   <h6 className="text-blueGray-500 text-sm font-bold">
-                    Sign Up
+                    Sign in
                   </h6>
                 </div>
 
                 {/* <hr className="mt-6 border-b-1 border-blueGray-300" /> */}
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form onSubmit={register}>
+                <form onSubmit={login}>
+                  <div className="relative w-full mb-3 border-b border-black py-2">
+                    <TenantSelect
+                      selected={selected}
+                      setSelected={setSelected}
+                    />
+                  </div>
                   <div className="relative w-full mb-3 border-b border-black py-2">
                     <label
                       className="block text-blueGray-600 text-xs font-bold mb-2"
@@ -85,27 +95,14 @@ export default function Register() {
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-500 font-bold my-4 flex items-center">
+                    <label className="inline-flex items-center cursor-pointer">
                       <input
-                        className="leading-loose text-pink-600 top-0"
+                        id="customCheckLogin"
                         type="checkbox"
-                        required
+                        className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                       />
-                      <span className="ml-2 text-sm py-2 text-gray-600 text-left">
-                        Accept the{" "}
-                        <a
-                          href="#"
-                          className="font-semibold text-black border-b-2 border-gray-200 hover:border-gray-500"
-                        >
-                          Terms and Conditions of Choys{" "}
-                        </a>
-                        and{" "}
-                        <a
-                          href="#"
-                          className="font-semibold text-black border-b-2 border-gray-200 hover:border-gray-500"
-                        >
-                          the information data policy.
-                        </a>
+                      <span className="ml-2 text-sm font-semibold text-blueGray-600">
+                        Remember me
                       </span>
                     </label>
                   </div>
@@ -117,7 +114,7 @@ export default function Register() {
                         className="bg-blue-300 text-white active:bg-blue-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                         disabled
                       >
-                        Signing Up...
+                        Logging In...
                       </button>
                     ) : (
                       <button
@@ -125,7 +122,7 @@ export default function Register() {
                         type="submit"
                         disabled={!email || !password}
                       >
-                        Sign Up
+                        Sign In
                       </button>
                     )}
                   </div>
@@ -134,12 +131,16 @@ export default function Register() {
             </div>
             <div className="flex flex-wrap mt-6 relative">
               <div className="w-1/2">
-                <small>Already have an account?</small>
+                <Link href="/auth/forgot-password">
+                  <a className="text-blueGray-200">
+                    <small>Forgot password? Reset</small>
+                  </a>
+                </Link>
               </div>
               <div className="w-1/2 text-right">
-                <Link href="/auth/login">
-                  <a className="text-blueGray-200">
-                    <small>login</small>
+                <Link href="/auth/signup">
+                  <a href="#pablo" className="text-blueGray-200">
+                    <small>Create new account</small>
                   </a>
                 </Link>
               </div>
@@ -151,4 +152,4 @@ export default function Register() {
   );
 }
 
-Register.layout = Auth;
+EmployeeLogin.layout = Auth;
