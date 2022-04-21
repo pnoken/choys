@@ -3,7 +3,12 @@ import { onAuthStateChanged, updateProfile } from "firebase/auth";
 import { auth, storage } from "../../firebase-config";
 import { Notification } from "../Toast/Notification";
 import ImageUpload from "./CardImageUpload";
-import { ref, uploadBytes } from "firebase/storage";
+import {
+  ref,
+  uploadBytes,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 export default function CardSettings() {
   const [user, setUser] = useState([]);
@@ -14,6 +19,7 @@ export default function CardSettings() {
   const [loading, setLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
+  const [progress, setProgress] = useState(0);
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });
@@ -21,27 +27,47 @@ export default function CardSettings() {
   const updateUser = async () => {
     setLoading(true);
     const storageRef = ref(storage, selectedFile.name);
-    uploadBytes(storageRef, selectedFile)
-      .then((snapshot) => {
-        console.log("üploaded", snapshot);
-      })
-      .then((file) => {
-        updateProfile(auth.currentUser, {
-          displayName: fullName ? fullName : user?.displayName,
-          photoURL: file ? file : user?.photoURL,
-        });
-      })
+    const uploadTask = uploadBytesResumable(storageRef, selectedFile);
 
-      .then(() => {
-        setStatus("success");
-        setResponse(`Successfully updated profile`);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setStatus("error");
-        setResponse(error.message);
-        setLoading(false);
-      });
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setProgress(progress);
+        switch (snapshot.state) {
+          case "paused":
+            console.log("Upload is paused");
+            break;
+          case "running":
+            console.log("Upload is running");
+            break;
+        }
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        setProgress(0);
+        getDownloadURL(uploadTask.snapshot.ref)
+          .then((downloadURL) => {
+            updateProfile(auth.currentUser, {
+              displayName: fullName ? fullName : user?.displayName,
+              photoURL: downloadURL ? downloadURL : user?.photoURL,
+            });
+          })
+          .then(() => {
+            setStatus("success");
+            setResponse(`Successfully updated profile`);
+            setLoading(false);
+          })
+          .catch((error) => {
+            setStatus("error");
+            setResponse(error.message);
+            setLoading(false);
+          });
+      }
+    );
   };
 
   console.log("user", user);
@@ -107,6 +133,7 @@ export default function CardSettings() {
                   selectedFile={selectedFile}
                   onSelectFile={onSelectFile}
                   photo={user?.photoURL}
+                  progress={progress}
                 />
               </div>
               <div className="w-full lg:w-6/12 px-4">

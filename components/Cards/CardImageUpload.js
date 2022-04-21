@@ -2,17 +2,34 @@ export default function ImageUpload({
   preview,
   selectedFile,
   onSelectFile,
-  photoURL,
+  photo,
+  progress,
 }) {
   return (
     <div className="py-3 center mx-auto">
       <div className="bg-white px-4 py-5 rounded-lg shadow-lg text-center w-48">
+        {progress > 0 ? (
+          <div>
+            <div>Uploding {progress} %</div>
+            <div className="w-full bg-gray-200 rounded-full h-2.5 my-2 dark:bg-gray-700">
+              <div
+                className="bg-blue-600 h-2.5 rounded-full"
+                style={{ width: `${progress}%` }}
+              ></div>
+            </div>
+          </div>
+        ) : progress === 100 ? (
+          <div>Upload Successful</div>
+        ) : (
+          <></>
+        )}
+
         <div className="mb-4">
           <img
             className="w-auto mx-auto rounded-full object-cover object-center"
             src={
-              photoURL ||
               preview ||
+              photo ||
               "https://i1.pngguru.com/preview/137/834/449/cartoon-cartoon-character-avatar-drawing-film-ecommerce-facial-expression-png-clipart.jpg"
             }
             alt="Profile Pic"
