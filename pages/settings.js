@@ -9,8 +9,8 @@ import axios from "axios";
 export default function Settings() {
   const router = useRouter();
   const { code } = router.query;
-  const clientID = 80223;
-  const clientSecret = "bf4429450ccce439035180d52b46801d0ef64147";
+  const clientID = process.env.stravaClientID;
+  const clientSecret = process.env.stravaClientSecret;
   const redirectURI = window.location.href;
   const [authenticated, setAuthenticated] = useState(
     localStorage.authenticated || false
@@ -49,6 +49,7 @@ export default function Settings() {
           <CardAPI
             redirectURI={redirectURI}
             authenticated={authenticated}
+            clientID={clientID}
             setAuthenticated={setAuthenticated}
           />
         </div>
