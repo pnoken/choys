@@ -33,6 +33,7 @@ export default function Login() {
       }
     } catch (err) {
       setStatus("error");
+      //prints error message
       setResponse(err.message);
     }
     setLoading(false);
