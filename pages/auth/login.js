@@ -22,7 +22,14 @@ export default function Login() {
         setStatus("success");
         setResponse(`Successfully logged in as ${user.user.email}`);
         localStorage.setItem("refresh", user.user.refreshToken);
-        setTimeout(() => router.push("/"), 2000);
+        user.user.getIdTokenResult().then((idToken) => {
+          console.log("claims", idToken.claims.role);
+          if (idToken.claims.role === "admin") {
+            setTimeout(() => router.push("/admin"), 2000);
+          } else {
+            setTimeout(() => router.push("/"), 2000);
+          }
+        });
       }
     } catch (err) {
       setStatus("error");
