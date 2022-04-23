@@ -7,6 +7,7 @@ const user = auth.currentUser;
 export default function Announcement() {
   // initialize timeLeft with the seconds prop
   const [timeLeft, setTimeLeft] = useState(0);
+  const [show, setShow] = useState(true);
 
   const verifyAcc = () => {
     sendEmailVerification(auth.currentUser).then(() => {
@@ -34,7 +35,7 @@ export default function Announcement() {
   console.log(timeLeft);
   return (
     <Fragment>
-      {!user?.emailVerified && (
+      {user?.emailVerified === "false" && show && (
         <div className="bg-indigo-600">
           <div className="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between flex-wrap">
@@ -69,6 +70,7 @@ export default function Announcement() {
               <div className="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
                 <button
                   type="button"
+                  onClick={() => setShow(false)}
                   className="-mr-1 flex p-2 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2"
                 >
                   <span className="sr-only">Dismiss</span>
