@@ -3,6 +3,7 @@ import UserDropdown from "../Dropdowns/UserDropdown.js";
 import Nofification from "../Dropdowns/Notification.js";
 import Link from "next/link";
 import { BellIcon } from "@heroicons/react/outline";
+import Announcement from "../Annoucement.js";
 
 export default function Navbar() {
   const [search, setSearch] = React.useState(false);
@@ -13,7 +14,8 @@ export default function Navbar() {
         <Nofification setOpenNotification={setOpenNotification} />
       )}
       {/* Navbar */}
-      <nav className="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
+      <Announcement />
+      <nav className="absolute left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
         <div className="w-full mx-auto items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
           {/* Brand */}
 
@@ -51,7 +53,7 @@ export default function Navbar() {
           {/* </span> */}
           {search && (
             <form
-              onMouseOut={() => setSearch(false)}
+              // onMouseOut={() => setSearch(false)}
               className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3"
             >
               <div className="relative flex w-full flex-wrap items-stretch">
