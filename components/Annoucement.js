@@ -7,7 +7,6 @@ const user = auth.currentUser;
 export default function Announcement() {
   // initialize timeLeft with the seconds prop
   const [timeLeft, setTimeLeft] = useState(0);
-  // const [seconds, setSeconds] = useState("");
 
   const verifyAcc = () => {
     sendEmailVerification(auth.currentUser).then(() => {
