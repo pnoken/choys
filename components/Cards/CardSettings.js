@@ -53,7 +53,7 @@ export default function CardSettings() {
           .then((downloadURL) => {
             updateProfile(auth.currentUser, {
               displayName: fullName ? fullName : user?.displayName,
-              photoURL: downloadURL ? downloadURL : user?.photoURL,
+              photoURL: downloadURL ? downloadURL : user?.photoURL || "",
             });
           })
           .then(() => {
