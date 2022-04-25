@@ -8,13 +8,9 @@ export default function CardAPI({
   clientID,
 }) {
   const revokeAccess = async () => {
+    localStorage.clear();
     axiosInstance
       .post("https://www.strava.com/oauth/deauthorize")
-      .then(() => {
-        localStorage.removeItem("strava_access");
-        localStorage.removeItem("strava_refresh");
-        localStorage.removeItem("authenticated");
-      })
       .catch(function (error) {
         console.log(error);
       });

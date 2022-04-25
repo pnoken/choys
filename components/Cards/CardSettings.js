@@ -3,32 +3,25 @@ import { onAuthStateChanged, updateProfile } from "firebase/auth";
 import { auth, storage } from "../../firebase-config";
 import { Notification } from "../Toast/Notification";
 import ImageUpload from "./CardImageUpload";
-import {
-  ref,
-  uploadBytes,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 export default function CardSettings() {
   const [user, setUser] = useState([]);
   const [fullName, setFullName] = useState("");
-  // const [lastName, setLastName] = useState("");
   const [response, setResponse] = useState("");
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
   const [progress, setProgress] = useState(0);
+  const [downloadableURL, setDowloadableURL] = useState("");
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });
 
-  const updateUser = async () => {
-    setLoading(true);
-    const storageRef = ref(storage, selectedFile.name);
+  const fileUpload = () => {
+    const storageRef = ref(storage, selectedFile?.name);
     const uploadTask = uploadBytesResumable(storageRef, selectedFile);
-
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -51,26 +44,34 @@ export default function CardSettings() {
         setProgress(0);
         getDownloadURL(uploadTask.snapshot.ref)
           .then((downloadURL) => {
-            updateProfile(auth.currentUser, {
-              displayName: fullName ? fullName : user?.displayName,
-              photoURL: downloadURL ? downloadURL : user?.photoURL || "",
-            });
-          })
-          .then(() => {
-            setStatus("success");
-            setResponse(`Successfully updated profile`);
-            setLoading(false);
+            setDowloadableURL(downloadURL);
           })
           .catch((error) => {
-            setStatus("error");
             setResponse(error.message);
-            setLoading(false);
           });
       }
     );
   };
 
-  console.log("user", user);
+  const updateUser = async () => {
+    setLoading(true);
+
+    updateProfile(auth.currentUser, {
+      displayName: fullName ? fullName : user?.displayName,
+      photoURL: downloadableURL ? downloadableURL : user?.photoURL || "",
+    })
+      .then(() => {
+        setStatus("success");
+        setResponse(`Successfully updated profile`);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setStatus("error");
+        setResponse(error.message);
+        setLoading(false);
+      });
+  };
+
   useEffect(() => {
     if (!selectedFile) {
       setPreview(undefined);
@@ -92,9 +93,10 @@ export default function CardSettings() {
 
     // I've kept this example simple by using the first image instead of multiple
     setSelectedFile(e.target.files[0]);
+
+    if (selectedFile) fileUpload();
   };
 
-  console.log("selected file", selectedFile);
   return (
     <>
       {response && <Notification message={response} status={status} />}
@@ -180,116 +182,14 @@ export default function CardSettings() {
                   <input
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    // value={firstName}
                     defaultValue={user?.displayName}
                     onChange={(e) => setFullName(e.target.value)}
                   />
                 </div>
               </div>
-              {/* <div className="w-full lg:w-6/12 px-4">
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
-                  >
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    defaultValue={user?.displayName?.split(" ")[1]}
-                    onChange={(e) => setLastName(e.target.value)}
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  />
-                </div>
-              </div> */}
             </div>
 
             <hr className="mt-6 border-b-1 border-blueGray-300" />
-
-            {/* <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-              Contact Information
-            </h6>
-            <div className="flex flex-wrap">
-              <div className="w-full lg:w-12/12 px-4">
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
-                  >
-                    Address
-                  </label>
-                  <input
-                    type="text"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  />
-                </div>
-              </div>
-              <div className="w-full lg:w-4/12 px-4">
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
-                  >
-                    City
-                  </label>
-                  <input
-                    type="name"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  />
-                </div>
-              </div>
-              <div className="w-full lg:w-4/12 px-4">
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
-                  >
-                    Country
-                  </label>
-                  <input
-                    type="text"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  />
-                </div>
-              </div>
-              <div className="w-full lg:w-4/12 px-4">
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
-                  >
-                    Postal Code
-                  </label>
-                  <input
-                    type="text"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <hr className="mt-6 border-b-1 border-blueGray-300" />
-
-            <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-              About
-            </h6>
-            <div className="flex flex-wrap">
-              <div className="w-full lg:w-12/12 px-4">
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
-                  >
-                    About me
-                  </label>
-                  <textarea
-                    type="text"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    rows="4"
-                  ></textarea>
-                </div>
-              </div>
-            </div> */}
           </form>
         </div>
       </div>

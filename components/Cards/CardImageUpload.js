@@ -8,9 +8,11 @@ export default function ImageUpload({
   return (
     <div className="py-3 center mx-auto">
       <div className="bg-white px-4 py-5 rounded-lg shadow-lg text-center w-48">
-        {progress > 0 ? (
+        {progress > 0 && (
           <div>
-            <div>Uploding {progress} %</div>
+            <div>
+              {progress === 100 ? "Upload Completed" : `Uploding ${progress} %`}
+            </div>
             <div className="w-full bg-gray-200 rounded-full h-2.5 my-2 dark:bg-gray-700">
               <div
                 className="bg-blue-600 h-2.5 rounded-full"
@@ -18,10 +20,6 @@ export default function ImageUpload({
               ></div>
             </div>
           </div>
-        ) : progress === 100 ? (
-          <div>Upload Successful</div>
-        ) : (
-          <></>
         )}
 
         <div className="mb-4">
@@ -42,7 +40,7 @@ export default function ImageUpload({
           <input
             type="file"
             className="hidden"
-            accept="image/*"
+            accept="image/png, image/jpeg"
             onChange={onSelectFile}
           />
         </label>
