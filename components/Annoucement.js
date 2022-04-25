@@ -3,14 +3,14 @@ import { getAuth, sendEmailVerification } from "firebase/auth";
 import { Fragment, useState, useEffect } from "react";
 
 const auth = getAuth();
-const user = auth.currentUser;
+const user = auth?.currentUser;
 export default function Announcement() {
   // initialize timeLeft with the seconds prop
   const [timeLeft, setTimeLeft] = useState(0);
   const [show, setShow] = useState(true);
 
   const verifyAcc = () => {
-    sendEmailVerification(auth.currentUser).then(() => {
+    sendEmailVerification(user).then(() => {
       console.log("Link sent");
       setTimeLeft(60);
     });
