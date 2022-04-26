@@ -5,8 +5,7 @@ import Preloader from "../components/preloader";
 import { useState, useEffect } from "react";
 import axiosInstance from "../utils/axiosStrava";
 import { formatDateTime } from "../utils/shared";
-import Link from "next/link";
-import { getDatabase, ref, set } from "firebase/database";
+import { useRouter } from "next/router";
 import { getAuth } from "firebase/auth";
 
 const StravaCard = dynamic(() => import("../components/Cards/StravaStats"), {
@@ -20,6 +19,7 @@ const StravaCard = dynamic(() => import("../components/Cards/StravaStats"), {
 export default function Analytics() {
   const [distance, setDistance] = useState([]);
   const [date, setDate] = useState([]);
+  const router = useRouter();
   useEffect(() => {
     const auth = getAuth();
     const userId = auth?.currentUser.uid;
@@ -49,14 +49,6 @@ export default function Analytics() {
 
   //Write strava data to database
 
-  function writeUserData(userId, distance, date) {
-    const db = getDatabase();
-    set(ref(db, "strava/" + userId), {
-      distance: distance,
-      date: date,
-    });
-  }
-
   return (
     <>
       <div className="flex flex-wrap">
@@ -66,14 +58,12 @@ export default function Analytics() {
           ) : (
             <div>
               <h1>Strava Data not available. Please Authenticate</h1>
-              <Link href="/settings">
-                <a>
-                  <img
-                    src="/api_providers/btn_strava_connectwith_orange.png"
-                    alt="authenticated with Strava"
-                  />
-                </a>
-              </Link>
+
+              <img
+                src="/api_providers/btn_strava_connectwith_orange.png"
+                alt="authenticated with Strava"
+                onClick={() => router.push("/settings")}
+              />
             </div>
           )}
         </div>

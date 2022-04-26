@@ -2,9 +2,9 @@ import { MailIcon, XIcon } from "@heroicons/react/outline";
 import { getAuth, sendEmailVerification } from "firebase/auth";
 import { Fragment, useState, useEffect } from "react";
 
-const auth = getAuth();
-const user = auth?.currentUser;
 export default function Announcement() {
+  const auth = getAuth();
+  const user = auth?.currentUser;
   // initialize timeLeft with the seconds prop
   const [timeLeft, setTimeLeft] = useState(0);
   const [show, setShow] = useState(true);
@@ -35,7 +35,9 @@ export default function Announcement() {
   console.log(timeLeft);
   return (
     <Fragment>
-      {user?.emailVerified === "false" && show && (
+      {user?.emailVerified ? (
+        ""
+      ) : (
         <div className="bg-indigo-600">
           <div className="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between flex-wrap">

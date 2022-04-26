@@ -1,7 +1,7 @@
 import React from "react";
 import CardStats from "../Cards/CardStats.js";
 
-export default function HeaderStats() {
+export default function UserStats() {
   return (
     <>
       {/* Header */}

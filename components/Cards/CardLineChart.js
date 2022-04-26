@@ -116,7 +116,7 @@ export default function CardLineChart() {
                 Wellbeing Engagement
               </h6> */}
               <h2 className="text-black text-xl font-semibold">
-                Wellbeing Engagement
+                User Activity
               </h2>
             </div>
           </div>
