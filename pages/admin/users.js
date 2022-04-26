@@ -14,10 +14,10 @@ export default function AdminUsers() {
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="w-full mb-12 xl:mb-0 px-1">
+        <div className="w-full mb-12 px-1"></div>
+        <div className="w-full mb-12 mt-12 xl:mb-0 px-1">
           <UserTable color="light" />
         </div>
-        <div className="w-full mb-12 px-1"></div>
       </div>
     </>
   );

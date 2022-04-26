@@ -7,11 +7,15 @@ import NewJoinerVideo from "../../components/Cards/NewJoinerVideo.js";
 import WellbeingChampionBoard from "../../components/Cards/WellBeingChampionBoard.js";
 import withAuth from "../../components/PrivateRoute.js";
 import Admin from "../../components/Layout/Admin";
+import UserStats from "../../components/Headers/UserStats.js";
 
 export default function AdminDashboard() {
   return (
     <>
       <div className="flex flex-wrap">
+        <div className="w-full mb-12 px-1">
+          <UserStats />
+        </div>
         <div className="w-full xl:w-6/12 mb-12 xl:mb-0 px-1">
           <CardLineChart />
         </div>

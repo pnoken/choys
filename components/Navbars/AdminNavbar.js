@@ -47,7 +47,7 @@ export default function Navbar() {
           {!search && (
             <i
               className="fas fa-search hidden lg:inline-block"
-              onMouseEnter={() => setSearch(true)}
+              onClick={() => setSearch(true)}
             ></i>
           )}
           {/* </span> */}

@@ -9,7 +9,8 @@ export default function Admin({ children }) {
       <Sidebar />
       <div className="relative md:ml-16 bg-[#EFF3F9]">
         <AdminNavbar />
-        <UserStats />
+        <div className="px-4 md:px-10 mx-auto w-full m-24"></div>
+        {/* <UserStats /> */}
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
           {children}
           {/* <FooterAdmin /> */}
