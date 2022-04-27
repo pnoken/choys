@@ -1,9 +1,31 @@
-import { Fragment, useRef } from "react";
+import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { PencilIcon } from "@heroicons/react/outline";
+import axiosInstance from "../../utils/axiosInstance";
 
 export default function EditProfile({ edit, setEdit, user }) {
   const cancelButtonRef = useRef(null);
+  const [displayName, setDisplayName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
+
+  const updateUser = (e) => {
+    e.preventDefault();
+    axiosInstance
+      .patch(`/users/${user.uid}`, {
+        displayName: displayName || user.displayName,
+        email: email || user.email,
+        password: password || user.password,
+        role: role || user.role,
+      })
+      .then((user) => {
+        console.log(user.data), setEdit(false);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
   return (
     <Transition.Root show={edit} as={Fragment}>
@@ -58,7 +80,7 @@ export default function EditProfile({ edit, setEdit, user }) {
                     >
                       Edit account
                     </Dialog.Title>
-                    <form action="#" method="POST">
+                    <form action="#" method="POST" onSubmit={updateUser}>
                       <div className="shadow overflow-hidden sm:rounded-md">
                         <div className="px-4 py-5 bg-white sm:p-6">
                           <div className="grid grid-cols-6 gap-6">
@@ -68,13 +90,17 @@ export default function EditProfile({ edit, setEdit, user }) {
                               </label>
                               <div className="mt-1 flex items-center">
                                 <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-                                  <svg
-                                    className="h-full w-full text-gray-300"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                  </svg>
+                                  {user.photoURL ? (
+                                    <img src={user.photoURL} />
+                                  ) : (
+                                    <svg
+                                      className="h-full w-full text-gray-300"
+                                      fill="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                    </svg>
+                                  )}
                                 </span>
                                 <button
                                   type="button"
@@ -89,12 +115,13 @@ export default function EditProfile({ edit, setEdit, user }) {
                                 htmlFor="first-name"
                                 className="block text-sm font-medium text-gray-700"
                               >
-                                First name
+                                Full Name
                               </label>
                               <input
                                 type="text"
                                 name="first-name"
                                 defaultValue={user.displayName}
+                                onChange={(e) => setDisplayName(e.target.value)}
                                 id="first-name"
                                 autoComplete="given-name"
                                 className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
@@ -112,8 +139,27 @@ export default function EditProfile({ edit, setEdit, user }) {
                                 type="text"
                                 name="email-address"
                                 defaultValue={user.email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 id="email-address"
                                 autoComplete="email"
+                                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                              />
+                            </div>
+
+                            <div className="col-span-6 sm:col-span-4">
+                              <label
+                                htmlFor="email-address"
+                                className="block text-sm font-medium text-gray-700"
+                              >
+                                Password
+                              </label>
+                              <input
+                                type="password"
+                                name="password"
+                                value={user.password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                id="password"
+                                autoComplete="password"
                                 className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                               />
                             </div>
@@ -148,11 +194,13 @@ export default function EditProfile({ edit, setEdit, user }) {
                                 id="country"
                                 name="country"
                                 autoComplete="country-name"
+                                defaultValue={user.role}
+                                onChange={(e) => setRole(e.target.value)}
                                 className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                               >
-                                <option>Admin</option>
-                                <option>Manager</option>
-                                <option>User</option>
+                                <option value="admin">Admin</option>
+                                <option value="manager">Manager</option>
+                                <option value="user">User</option>
                               </select>
                             </div>
                           </div>
