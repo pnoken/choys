@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged, updateProfile } from "firebase/auth";
-import { auth, storage } from "../../firebase-config";
 import { Notification } from "../Toast/Notification";
 import ImageUpload from "./CardImageUpload";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import uploadFile from "../../utils/shared";
+import { auth } from "../../firebase-config";
 
 export default function CardSettings() {
   const [user, setUser] = useState([]);
@@ -19,39 +19,7 @@ export default function CardSettings() {
     setUser(currentUser);
   });
 
-  const fileUpload = () => {
-    const storageRef = ref(storage, selectedFile?.name);
-    const uploadTask = uploadBytesResumable(storageRef, selectedFile);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setProgress(progress);
-        switch (snapshot.state) {
-          case "paused":
-            console.log("Upload is paused");
-            break;
-          case "running":
-            console.log("Upload is running");
-            break;
-        }
-      },
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        setProgress(0);
-        getDownloadURL(uploadTask.snapshot.ref)
-          .then((downloadURL) => {
-            setDowloadableURL(downloadURL);
-          })
-          .catch((error) => {
-            setResponse(error.message);
-          });
-      }
-    );
-  };
+  const filePath = selectedFile?.name;
 
   const updateUser = async () => {
     setLoading(true);
@@ -90,11 +58,10 @@ export default function CardSettings() {
       setSelectedFile(undefined);
       return;
     }
-
-    // I've kept this example simple by using the first image instead of multiple
     setSelectedFile(e.target.files[0]);
 
-    if (selectedFile) fileUpload();
+    if (selectedFile)
+      uploadFile(filePath, selectedFile, setProgress, setDowloadableURL);
   };
 
   return (
