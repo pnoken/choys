@@ -48,3 +48,8 @@ export const uploadFile = (
     }
   );
 };
+
+export const deleteAUser = (index, users, setUsers) => {
+  const remUsers = users.splice(0, index);
+  setUsers(remUsers);
+};

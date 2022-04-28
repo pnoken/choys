@@ -5,12 +5,15 @@ import axiosInstance from "../../utils/axiosInstance";
 
 export default function EditProfile({ edit, setEdit, user }) {
   const cancelButtonRef = useRef(null);
-  const [displayName, setDisplayName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [userInput, setUserInput] = useState({
+    displayName: "",
+    email: "",
+    password: "",
+    role: "",
+  });
 
   const updateUser = (e) => {
+    const { displayName, email, password, role } = userInput;
     e.preventDefault();
     axiosInstance
       .patch(`/users/${user.uid}`, {
@@ -19,8 +22,9 @@ export default function EditProfile({ edit, setEdit, user }) {
         password: password || user.password,
         role: role || user.role,
       })
-      .then((user) => {
-        console.log(user.data), setEdit(false);
+      .then(() => {
+        // setUsers([...users, user]),
+        setEdit(false);
       })
       .catch((err) => {
         console.log(err.message);
@@ -121,7 +125,14 @@ export default function EditProfile({ edit, setEdit, user }) {
                                 type="text"
                                 name="first-name"
                                 defaultValue={user.displayName}
-                                onChange={(e) => setDisplayName(e.target.value)}
+                                onChange={(e) =>
+                                  setUserInput((prevState) => {
+                                    return {
+                                      ...prevState,
+                                      displayName: e.target.value,
+                                    };
+                                  })
+                                }
                                 id="first-name"
                                 autoComplete="given-name"
                                 className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
@@ -139,7 +150,14 @@ export default function EditProfile({ edit, setEdit, user }) {
                                 type="text"
                                 name="email-address"
                                 defaultValue={user.email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) =>
+                                  setUserInput((prevState) => {
+                                    return {
+                                      ...prevState,
+                                      email: e.target.value,
+                                    };
+                                  })
+                                }
                                 id="email-address"
                                 autoComplete="email"
                                 className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
@@ -157,7 +175,14 @@ export default function EditProfile({ edit, setEdit, user }) {
                                 type="password"
                                 name="password"
                                 value={user.password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(e) =>
+                                  setUserInput((prevState) => {
+                                    return {
+                                      ...prevState,
+                                      password: e.target.value,
+                                    };
+                                  })
+                                }
                                 id="password"
                                 autoComplete="password"
                                 className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
@@ -195,7 +220,14 @@ export default function EditProfile({ edit, setEdit, user }) {
                                 name="country"
                                 autoComplete="country-name"
                                 defaultValue={user.role}
-                                onChange={(e) => setRole(e.target.value)}
+                                onChange={(e) =>
+                                  setUserInput((prevState) => {
+                                    return {
+                                      ...prevState,
+                                      role: e.target.value,
+                                    };
+                                  })
+                                }
                                 className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                               >
                                 <option value="admin">Admin</option>

@@ -2,15 +2,17 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
 import axiosInstance from "../../utils/axiosInstance";
+import { deleteAUser } from "../../utils/shared";
 
 export default function ConfirmDelete({ open, setOpen, user }) {
   const cancelButtonRef = useRef(null);
 
   const deleteUser = async () => {
+    const userId = user.uid;
     await axiosInstance
-      .delete(`users/${user.uid}`)
+      .delete(`users/${userId}`)
       .then(() => {
-        console.log("Successfully Delete User");
+        deleteAUser(userId);
       })
       .catch((err) => {
         console.log(err);
