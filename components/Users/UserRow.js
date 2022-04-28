@@ -3,7 +3,7 @@ import TableDropdown from "../Dropdowns/TableDropDown";
 import ConfirmDelete from "../Modal/DeleteModal";
 import EditProfile from "../Modal/EditModal";
 
-export default function UserRow({ user, color }) {
+export default function UserRow({ user, color, editUser }) {
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(false);
   return (
@@ -11,7 +11,14 @@ export default function UserRow({ user, color }) {
       {open && (
         <ConfirmDelete open={open} setOpen={setOpen} id={user.id} user={user} />
       )}
-      {edit && <EditProfile edit={edit} setEdit={setEdit} user={user} />}
+      {edit && (
+        <EditProfile
+          edit={edit}
+          setEdit={setEdit}
+          user={user}
+          onEditUser={editUser}
+        />
+      )}
       <tbody>
         <tr>
           <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">

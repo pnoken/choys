@@ -22,6 +22,12 @@ export default function EmployeeTable({ color }) {
       });
   }, []);
 
+  const editUser = (userData) => {
+    let index = users.findIndex((u) => u.email === userData.email);
+    const newUsers = (users[index] = userData);
+    return setUsers(newUsers);
+  };
+
   return (
     <>
       <div
@@ -112,8 +118,14 @@ export default function EmployeeTable({ color }) {
             {users &&
               users.length > 0 &&
               users.map((user, i) => {
-                // const { email, displayName, role } = user;
-                return <UserRow key={i} user={user} color={color} />;
+                return (
+                  <UserRow
+                    key={i}
+                    user={user}
+                    color={color}
+                    editUser={editUser}
+                  />
+                );
               })}
           </table>
           {noUsers && <h1>No users found</h1>}

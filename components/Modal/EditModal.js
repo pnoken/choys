@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { PencilIcon } from "@heroicons/react/outline";
 import axiosInstance from "../../utils/axiosInstance";
 
-export default function EditProfile({ edit, setEdit, user }) {
+export default function EditProfile({ edit, setEdit, user, onEditUser }) {
   const cancelButtonRef = useRef(null);
   const [userInput, setUserInput] = useState({
     displayName: "",
@@ -22,10 +22,10 @@ export default function EditProfile({ edit, setEdit, user }) {
         password: password || user.password,
         role: role || user.role,
       })
-      .then(() => {
-        // setUsers([...users, user]),
-        setEdit(false);
+      .then((user) => {
+        () => onEditUser(user.config.data);
       })
+      .then(() => setEdit(false))
       .catch((err) => {
         console.log(err.message);
       });
