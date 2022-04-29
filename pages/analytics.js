@@ -72,24 +72,26 @@ export default function Analytics() {
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="lg:flex w-full justify-between">
-          <h3 className="text-gray-600 dark:text-gray-400 leading-5 text-base md:text-xl font-bold">
-            Total Distance Covered: {totalDistance.toFixed(2)}m
-          </h3>
-          <div className="bg-gray-100 dark:bg-gray-700 ease-in duration-150 hover:bg-gray-200 pb-2 pt-1 px-3 rounded-sm">
-            <label>Year</label>
-            <select
-              className="text-xs text-gray-600 dark:text-gray-400 focus:outline-none"
-              value={filteredYear}
-              onChange={yearChangeHandler}
-            >
-              <option className="leading-1" value="2022">
-                2022
-              </option>
-              <option className="leading-1" value="2021">
-                2021
-              </option>
-            </select>
+        <div className="w-full px-1">
+          <div className="flex items-center justify-between py-8 px-4">
+            <h3 className="text-gray-600 dark:text-gray-400 leading-5 text-base md:text-xl font-bold">
+              Total Distance Covered: {totalDistance.toFixed(2)}m
+            </h3>
+            <div className="bg-gray-100 dark:bg-gray-700 ease-in duration-150 hover:bg-gray-200 pb-2 pt-1 px-3 rounded-sm">
+              <label>Year</label>
+              <select
+                className="text-xs text-gray-600 dark:text-gray-400 focus:outline-none"
+                value={filteredYear}
+                onChange={yearChangeHandler}
+              >
+                <option className="leading-1" value="2022">
+                  2022
+                </option>
+                <option className="leading-1" value="2021">
+                  2021
+                </option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -103,7 +105,7 @@ export default function Analytics() {
               getTotalDistance={getTotalDistance}
             />
           ) : (
-            <div>
+            <div className="flex items-center justify-between py-8 px-4">
               <h1>Strava Data not available. Please Authenticate</h1>
 
               <img
