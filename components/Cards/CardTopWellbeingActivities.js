@@ -12,7 +12,7 @@ export default function CardTopWellbeingActivities() {
             </div>
           </div>
         </div>
-        <div className="block w-full overflow-x-auto">
+        <div className="block w-full overflow-x-auto mx-4">
           {/* Projects table */}
           <div className="items-center w-full bg-transparent border-collapse">
             <div className="grid grid-rows-3 grid-flow-col gap-4">
@@ -21,9 +21,9 @@ export default function CardTopWellbeingActivities() {
                   <img src="wellbeing-activities/drinkwater.svg" />
                 </div>
               </div>
-              <div className="col-span-2">
+              <div className="col-span-10">
                 <div className="flex items-center">
-                  <div className="relative w-full">
+                  <div className="relative w-3/4">
                     <div className="overflow-hidden h-2 text-xs flex rounded bg-[#F1F1F1]">
                       <div
                         style={{ width: "84%" }}
@@ -42,9 +42,9 @@ export default function CardTopWellbeingActivities() {
                   <img src="wellbeing-activities/saving.svg" />
                 </div>
               </div>
-              <div className="col-span-2">
+              <div className="col-span-10">
                 <div className="flex items-center">
-                  <div className="relative w-full">
+                  <div className="relative w-3/4">
                     <div className="overflow-hidden h-2 text-xs flex rounded bg-emerald-200">
                       <div
                         style={{ width: "72%" }}
@@ -63,9 +63,9 @@ export default function CardTopWellbeingActivities() {
                   <img src="wellbeing-activities/drinkwater.svg" />
                 </div>
               </div>
-              <div className="col-span-2">
+              <div className="col-span-10">
                 <div className="flex items-center">
-                  <div className="relative w-full">
+                  <div className="relative w-3/4">
                     <div className="overflow-hidden h-2 text-xs flex rounded bg-emerald-200">
                       <div
                         style={{ width: "66%" }}

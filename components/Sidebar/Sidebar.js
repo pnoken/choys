@@ -79,21 +79,21 @@ export default function Sidebar() {
                 </Link>
               </li>
 
-              {/* <li className="items-center">
+              <li className="items-center">
                 <Link href="/admin/calendar">
                   <a
                     className={
                       "text-xs flex uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/admin/calendar") !== -1
+                      (router.pathname.indexOf("/admin/events") !== -1
                         ? "text-blue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
                     <img src="sidebar-icons/calendar.svg" alt="calendar" />
-                    <span className="md:hidden ml-2 text-lg">Calendar</span>
+                    <span className="md:hidden ml-2 text-lg">Events</span>
                   </a>
                 </Link>
-              </li> */}
+              </li>
 
               <li className="items-center">
                 <Link href="/admin/users">
