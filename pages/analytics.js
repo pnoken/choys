@@ -76,10 +76,8 @@ export default function Analytics() {
           <h3 className="text-gray-600 dark:text-gray-400 leading-5 text-base md:text-xl font-bold">
             Total Distance Covered: {totalDistance.toFixed(2)}m
           </h3>
-        </div>
-
-        <div className="w-full px-1">
           <div className="bg-gray-100 dark:bg-gray-700 ease-in duration-150 hover:bg-gray-200 pb-2 pt-1 px-3 rounded-sm">
+            <label>Year</label>
             <select
               className="text-xs text-gray-600 dark:text-gray-400 focus:outline-none"
               value={filteredYear}
@@ -94,6 +92,7 @@ export default function Analytics() {
             </select>
           </div>
         </div>
+
         <div className="w-full px-1">
           {distance && distance.length > 0 ? (
             <StravaCard
