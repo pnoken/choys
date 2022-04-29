@@ -23,7 +23,7 @@ export default function EditProfile({ edit, setEdit, user, onEditUser }) {
         role: role || user.role,
       })
       .then((user) => {
-        () => onEditUser(user.config.data);
+        onEditUser(user.config.data);
       })
       .then(() => setEdit(false))
       .catch((err) => {

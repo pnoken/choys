@@ -1,9 +1,36 @@
 import AddForm from "../Modal/AddForm";
+import { useRef, useState } from "react";
+import axiosInstance from "../../utils/axiosInstance";
 
-const AddUser = ({ add, setAdd, user }) => {
+const AddUser = ({ add, setAdd, onAddUser }) => {
+  const [userInput, setUserInput] = useState({
+    displayName: "",
+    email: "",
+    password: "",
+    role: "",
+  });
+  const cancelButtonRef = useRef(null);
+  const addUser = (e) => {
+    const { displayName, email, password, role } = userInput;
+    e.preventDefault();
+    axiosInstance
+      .post(`/users`, {
+        displayName: displayName,
+        email: email,
+        password: password,
+        role: role,
+      })
+      .then(() => {
+        onAddUser(userInput);
+      })
+      .then(() => setAdd(false))
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
   return (
     <AddForm add={add} setAdd={setAdd}>
-      <form action="#" method="POST">
+      <form action="#" method="POST" onSubmit={addUser}>
         <div className="shadow overflow-hidden sm:rounded-md">
           <div className="px-4 py-5 bg-white sm:p-6">
             <div className="grid grid-cols-6 gap-6">
@@ -39,9 +66,17 @@ const AddUser = ({ add, setAdd, user }) => {
                 <input
                   type="text"
                   name="first-name"
-                  value={user.displayName}
                   id="first-name"
                   autoComplete="given-name"
+                  value={userInput.displayName}
+                  onChange={(e) =>
+                    setUserInput((prevState) => {
+                      return {
+                        ...prevState,
+                        displayName: e.target.value,
+                      };
+                    })
+                  }
                   className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                 />
               </div>
@@ -56,9 +91,42 @@ const AddUser = ({ add, setAdd, user }) => {
                 <input
                   type="text"
                   name="email-address"
-                  defaultValue={user.email}
+                  value={userInput.email}
+                  onChange={(e) =>
+                    setUserInput((prevState) => {
+                      return {
+                        ...prevState,
+                        email: e.target.value,
+                      };
+                    })
+                  }
                   id="email-address"
                   autoComplete="email"
+                  className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                />
+              </div>
+
+              <div className="col-span-6 sm:col-span-4">
+                <label
+                  htmlFor="email-address"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  value={userInput.password}
+                  onChange={(e) =>
+                    setUserInput((prevState) => {
+                      return {
+                        ...prevState,
+                        password: e.target.value,
+                      };
+                    })
+                  }
+                  id="password"
+                  autoComplete="password"
                   className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                 />
               </div>
@@ -93,11 +161,20 @@ const AddUser = ({ add, setAdd, user }) => {
                   id="country"
                   name="country"
                   autoComplete="country-name"
+                  defaultValue={userInput.role}
+                  onChange={(e) =>
+                    setUserInput((prevState) => {
+                      return {
+                        ...prevState,
+                        role: e.target.value,
+                      };
+                    })
+                  }
                   className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 >
-                  <option>Admin</option>
-                  <option>Manager</option>
-                  <option>User</option>
+                  <option value="admin">Admin</option>
+                  <option value="manager">Manager</option>
+                  <option value="user">User</option>
                 </select>
               </div>
             </div>
@@ -113,7 +190,7 @@ const AddUser = ({ add, setAdd, user }) => {
             <button
               type="button"
               className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-              onClick={() => setEdit(false)}
+              onClick={() => setAdd(false)}
               ref={cancelButtonRef}
             >
               Cancel

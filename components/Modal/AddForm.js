@@ -2,9 +2,8 @@ import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { PencilIcon } from "@heroicons/react/outline";
 
-export default function AddForm({ add, setAdd }) {
+export default function AddForm({ add, setAdd, children }) {
   const cancelButtonRef = useRef(null);
-
   return (
     <Transition.Root show={add} as={Fragment}>
       <Dialog
@@ -56,7 +55,7 @@ export default function AddForm({ add, setAdd }) {
                       as="h3"
                       className="text-lg leading-6 font-medium text-gray-900"
                     >
-                      Edit account
+                      Add User
                     </Dialog.Title>
                     {children}
                   </div>

@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import UserRow from "./UserRow";
 import axiosInstance from "../../utils/axiosInstance";
+import AddUser from "./AddUser";
 
 export default function UserTable({ color }) {
   const [users, setUsers] = useState([]);
   const [noUsers, setNoUsers] = useState(false);
+  const [add, setAdd] = useState(false);
 
   useEffect(() => {
     axiosInstance
@@ -22,8 +24,28 @@ export default function UserTable({ color }) {
       });
   }, []);
 
+  const editUser = (userData) => {
+    let index = users.findIndex((u) => u.email === userData.email);
+    users[index] = userData;
+    return setUsers(users);
+  };
+
+  const addUser = (userData) => {
+    setUsers((prevUsers) => {
+      return [userData, ...prevUsers];
+    });
+  };
+
   return (
     <>
+      {add && <AddUser add={add} setAdd={setAdd} onAddUser={addUser} />}
+      <button
+        type="submit"
+        onClick={() => setAdd(true)}
+        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        Add User
+      </button>
       <div
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
@@ -39,7 +61,7 @@ export default function UserTable({ color }) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Employees
+                Users
               </h3>
             </div>
           </div>
@@ -113,7 +135,14 @@ export default function UserTable({ color }) {
               users.length > 0 &&
               users.map((user, i) => {
                 // const { email, displayName, role } = user;
-                return <UserRow key={i} user={user} color={color} />;
+                return (
+                  <UserRow
+                    key={i}
+                    user={user}
+                    color={color}
+                    editUser={editUser}
+                  />
+                );
               })}
           </table>
           {noUsers && <h1>No users found</h1>}
