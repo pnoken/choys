@@ -89,7 +89,7 @@ export default function Sidebar() {
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
-                    <img src="sidebar-icons/calendar.svg" alt="calendar" />
+                    <img src="/sidebar-icons/calendar.svg" alt="calendar" />
                     <span className="md:hidden ml-2 text-lg">Events</span>
                   </a>
                 </Link>

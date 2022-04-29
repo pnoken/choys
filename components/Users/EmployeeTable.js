@@ -38,7 +38,7 @@ export default function EmployeeTable({ color }) {
       >
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+            <div className="relative flex justify-between w-full px-4 max-w-full flex-grow flex-1">
               <h3
                 className={
                   "font-semibold text-lg " +
@@ -47,6 +47,13 @@ export default function EmployeeTable({ color }) {
               >
                 Employees
               </h3>
+              <button
+                type="submit"
+                // onClick={() => setAdd(true)}
+                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Add Employee
+              </button>
             </div>
           </div>
         </div>
